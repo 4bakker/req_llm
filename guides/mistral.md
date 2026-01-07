@@ -46,6 +46,29 @@ Passed via `:provider_options` keyword:
   ]
   ```
 
+### `parallel_tool_calls`
+- **Type**: Boolean
+- **Purpose**: Enable parallel function calling during tool use
+- **Example**: `provider_options: [parallel_tool_calls: true]`
+
+### `prompt_mode`
+- **Type**: Atom (`:reasoning`)
+- **Purpose**: Toggle reasoning mode for reasoning models
+- **Example**: `provider_options: [prompt_mode: :reasoning]`
+
+### `metadata`
+- **Type**: Map
+- **Purpose**: Arbitrary key-value metadata for the request
+- **Example**: `provider_options: [metadata: %{"user_id" => "abc123"}]`
+
+## Core Options
+
+The following core ReqLLM options are also supported:
+
+- `n` - Number of completions to generate (default: 1)
+- `frequency_penalty` - Penalize repeated tokens based on frequency
+- `presence_penalty` - Penalize repeated tokens based on presence
+
 ## Seed Translation
 
 ReqLLM automatically translates the standard `seed` option to Mistral's `random_seed`:

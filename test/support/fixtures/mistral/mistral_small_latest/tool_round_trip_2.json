@@ -3,7 +3,7 @@
   "provider": "mistral",
   "request": {
     "body": {
-      "b64": "eyJtYXhfdG9rZW5zIjoxNjM4LCJtZXNzYWdlcyI6W3siY29udGVudCI6IlVzZSB0aGUgYWRkIHRvb2wgdG8gY29tcHV0ZSAyICsgMy4gQWZ0ZXIgdGhlIHRvb2wgcmVzdWx0IGFycml2ZXMsIHJlc3BvbmQgd2l0aCAnc3VtPTx2YWx1ZT4nLiIsInJvbGUiOiJ1c2VyIn0seyJjb250ZW50IjpbXSwicm9sZSI6ImFzc2lzdGFudCIsInRvb2xfY2FsbHMiOlt7ImZ1bmN0aW9uIjp7ImFyZ3VtZW50cyI6IntcImFcIjoyLFwiYlwiOjN9IiwibmFtZSI6ImFkZCJ9LCJpZCI6IklWODQ5Ym1RdyIsInR5cGUiOiJmdW5jdGlvbiJ9XX0seyJjb250ZW50IjoiNSIsIm5hbWUiOiJhZGQiLCJyb2xlIjoidG9vbCIsInRvb2xfY2FsbF9pZCI6IklWODQ5Ym1RdyJ9XSwibW9kZWwiOiJtaXN0cmFsLXNtYWxsLWxhdGVzdCIsInJhbmRvbV9zZWVkIjo0Miwic3RyZWFtIjpmYWxzZSwidGVtcGVyYXR1cmUiOjAuMH0="
+      "b64": "eyJtYXhfdG9rZW5zIjoxNjM4LCJtZXNzYWdlcyI6W3siY29udGVudCI6IlVzZSB0aGUgYWRkIHRvb2wgdG8gY29tcHV0ZSAyICsgMy4gQWZ0ZXIgdGhlIHRvb2wgcmVzdWx0IGFycml2ZXMsIHJlc3BvbmQgd2l0aCAnc3VtPTx2YWx1ZT4nLiIsInJvbGUiOiJ1c2VyIn0seyJjb250ZW50IjpbXSwicm9sZSI6ImFzc2lzdGFudCIsInRvb2xfY2FsbHMiOlt7ImZ1bmN0aW9uIjp7ImFyZ3VtZW50cyI6IntcImFcIjoyLFwiYlwiOjN9IiwibmFtZSI6ImFkZCJ9LCJpZCI6InpPdExMR29WYyIsInR5cGUiOiJmdW5jdGlvbiJ9XX0seyJjb250ZW50IjoiNSIsIm5hbWUiOiJhZGQiLCJyb2xlIjoidG9vbCIsInRvb2xfY2FsbF9pZCI6InpPdExMR29WYyJ9XSwibW9kZWwiOiJtaXN0cmFsLXNtYWxsLWxhdGVzdCIsInN0cmVhbSI6ZmFsc2UsInRlbXBlcmF0dXJlIjowLjB9"
     },
     "canonical_json": {
       "max_tokens": 1638,
@@ -21,7 +21,7 @@
                 "arguments": "{\"a\":2,\"b\":3}",
                 "name": "add"
               },
-              "id": "IV849bmQw",
+              "id": "zOtLLGoVc",
               "type": "function"
             }
           ]
@@ -30,11 +30,10 @@
           "content": "5",
           "name": "add",
           "role": "tool",
-          "tool_call_id": "IV849bmQw"
+          "tool_call_id": "zOtLLGoVc"
         }
       ],
       "model": "mistral-small-latest",
-      "random_seed": 42,
       "stream": false,
       "temperature": 0.0
     },
@@ -66,14 +65,14 @@
           }
         }
       ],
-      "created": 1767799782,
-      "id": "2dd6c7358baa4b7d92bb4adabfbcf84b",
+      "created": 1767804650,
+      "id": "9a26157136ee47f2ab7630709bc518b3",
       "model": "mistral-small-latest",
       "object": "chat.completion",
       "usage": {
         "completion_tokens": 4,
-        "prompt_tokens": 64,
-        "total_tokens": 68
+        "prompt_tokens": 62,
+        "total_tokens": 66
       }
     },
     "headers": {
@@ -96,7 +95,7 @@
         "application/json"
       ],
       "date": [
-        "Wed, 07 Jan 2026 15:29:42 GMT"
+        "Wed, 07 Jan 2026 16:50:50 GMT"
       ],
       "mistral-correlation-id": [
         "[REDACTED:mistral-correlation-id]"
@@ -118,16 +117,16 @@
         "nosniff"
       ],
       "x-envoy-upstream-service-time": [
-        "104"
+        "150"
       ],
       "x-kong-proxy-latency": [
-        "9"
+        "5"
       ],
       "x-kong-request-id": [
         "[REDACTED:x-kong-request-id]"
       ],
       "x-kong-upstream-latency": [
-        "104"
+        "151"
       ],
       "x-ratelimit-limit-req-60-second": [
         "360"
@@ -148,7 +147,7 @@
         "[REDACTED]"
       ],
       "x-ratelimit-tokens-query-cost": [
-        "68"
+        "66"
       ]
     },
     "status": 200

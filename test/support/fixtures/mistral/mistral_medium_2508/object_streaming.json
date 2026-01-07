@@ -1,21 +1,51 @@
 {
-  "captured_at": "2026-01-07T15:29:37.204431Z",
+  "captured_at": "2026-01-07T16:50:51.432698Z",
   "chunks": [
     {
-      "b64": "ZGF0YTogeyJpZCI6IjUwZjBjYWE5ODg2ZDRiY2E4NWQwNmUxZTMwMTg0MzE2Iiwib2JqZWN0IjoiY2hhdC5jb21wbGV0aW9uLmNodW5rIiwiY3JlYXRlZCI6MTc2Nzc5OTc3NiwibW9kZWwiOiJtaXN0cmFsLW1lZGl1bS0yNTA4IiwiY2hvaWNlcyI6W3siaW5kZXgiOjAsImRlbHRhIjp7InJvbGUiOiJhc3Npc3RhbnQiLCJjb250ZW50IjoiIn0sImZpbmlzaF9yZWFzb24iOm51bGx9XX0KCg=="
+      "b64": "ZGF0YTogeyJpZCI6IjhjODNlMzM5NjY2MDRiMDI4YjI4Mzc0ZDkzZDAzYzJmIiwib2JqZWN0IjoiY2hhdC5jb21wbGV0aW9uLmNodW5rIiwiY3JlYXRlZCI6MTc2NzgwNDY1MSwibW9kZWwiOiJtaXN0cmFsLW1lZGl1bS0yNTA4IiwiY2hvaWNlcyI6W3siaW5kZXgiOjAsImRlbHRhIjp7InJvbGUiOiJhc3Npc3RhbnQiLCJjb250ZW50IjoiIn0sImZpbmlzaF9yZWFzb24iOm51bGx9XX0KCmRhdGE6IHsiaWQiOiI4YzgzZTMzOTY2NjA0YjAyOGIyODM3NGQ5M2QwM2MyZiIsIm9iamVjdCI6ImNoYXQuY29tcGxldGlvbi5jaHVuayIsImNyZWF0ZWQiOjE3Njc4MDQ2NTEsIm1vZGVsIjoibWlzdHJhbC1tZWRpdW0tMjUwOCIsImNob2ljZXMiOlt7ImluZGV4IjowLCJkZWx0YSI6eyJjb250ZW50Ijoie1xuIn0sImZpbmlzaF9yZWFzb24iOm51bGx9XSwicCI6ImFiY2QifQoK"
     },
     {
-      "b64": "ZGF0YTogeyJpZCI6IjUwZjBjYWE5ODg2ZDRiY2E4NWQwNmUxZTMwMTg0MzE2Iiwib2JqZWN0IjoiY2hhdC5jb21wbGV0aW9uLmNodW5rIiwiY3JlYXRlZCI6MTc2Nzc5OTc3NiwibW9kZWwiOiJtaXN0cmFsLW1lZGl1bS0yNTA4IiwiY2hvaWNlcyI6W3siaW5kZXgiOjAsImRlbHRhIjp7InRvb2xfY2FsbHMiOlt7ImlkIjoicldYV2doQTV2IiwiZnVuY3Rpb24iOnsibmFtZSI6InN0cnVjdHVyZWRfb3V0cHV0IiwiYXJndW1lbnRzIjoie1wibmFtZVwiOiBcIkVtaWx5IENhcnRlclwiLCBcImFnZVwiOiAyOCwgXCJvY2N1cGF0aW9uXCI6IFwiU29mdHdhcmUgRW5naW5lZXJcIn0ifSwiaW5kZXgiOjB9LHsiaWQiOiJyTkxLYjcwMmsiLCJmdW5jdGlvbiI6eyJuYW1lIjoic3RydWN0dXJlZF9vdXRwdXQiLCJhcmd1bWVudHMiOiJ7XCJuYW1lXCI6IFwiSmFtZXMgUm9kcmlndWV6XCIsIFwiYWdlXCI6IDMyLCBcIm9jY3VwYXRpb25cIjogXCJTZW5pb3IgU29mdHdhcmUgRW5naW5lZXJcIn0ifSwiaW5kZXgiOjF9LHsiaWQiOiJ2MHhvWnczM1UiLCJmdW5jdGlvbiI6eyJuYW1lIjoic3RydWN0dXJlZF9vdXRwdXQiLCJhcmd1bWVudHMiOiJ7XCJuYW1lXCI6IFwiU29waGlhIFBhdGVsXCIsIFwiYWdlXCI6IDI1LCBcIm9jY3VwYXRpb25cIjogXCJGcm9udGVuZCBEZXZlbG9wZXJcIn0ifSwiaW5kZXgiOjJ9LHsiaWQiOiJMSjZhQ3pCOUQiLCJmdW5jdGlvbiI6eyJuYW1lIjoic3RydWN0dXJlZF9vdXRwdXQiLCJhcmd1bWVudHMiOiJ7XCJuYW1lXCI6IFwiRGFuaWVsIEtpbVwiLCBcImFnZVwiOiAzNSwgXCJvY2N1cGF0aW9uXCI6IFwiQmFja2VuZCBFbmdpbmVlclwifSJ9LCJpbmRleCI6M30seyJpZCI6ImdCMkRtYmZpSSIsImZ1bmN0aW9uIjp7Im5hbWUiOiJzdHJ1Y3R1cmVkX291dHB1dCIsImFyZ3VtZW50cyI6IntcIm5hbWVcIjogXCJPbGl2aWEgU21pdGhcIiwgXCJhZ2VcIjogMzAsIFwib2NjdXBhdGlvblwiOiBcIkZ1bGwgU3RhY2sgRGV2ZWxvcGVyXCJ9In0sImluZGV4Ijo0fV19LCJmaW5pc2hfcmVhc29uIjoidG9vbF9jYWxscyJ9XSwidXNhZ2UiOnsicHJvbXB0X3Rva2VucyI6MTM0LCJ0b3RhbF90b2tlbnMiOjI2NSwiY29tcGxldGlvbl90b2tlbnMiOjEzMX0sInAiOiJhYmNkZWZnaGlqa2xtbm9wcXJzdHV2d3h5ejAxMiJ9Cgo="
+      "b64": "ZGF0YTogeyJpZCI6IjhjODNlMzM5NjY2MDRiMDI4YjI4Mzc0ZDkzZDAzYzJmIiwib2JqZWN0IjoiY2hhdC5jb21wbGV0aW9uLmNodW5rIiwiY3JlYXRlZCI6MTc2NzgwNDY1MSwibW9kZWwiOiJtaXN0cmFsLW1lZGl1bS0yNTA4IiwiY2hvaWNlcyI6W3siaW5kZXgiOjAsImRlbHRhIjp7ImNvbnRlbnQiOiIgIFwiYWdlIn0sImZpbmlzaF9yZWFzb24iOm51bGx9XSwicCI6ImFiY2RlZmdoaWprbG1ub3BxcnN0dXZ3In0KCg=="
     },
     {
-      "b64": "ZGF0YTogW0RPTkVdCgo="
+      "b64": "ZGF0YTogeyJpZCI6IjhjODNlMzM5NjY2MDRiMDI4YjI4Mzc0ZDkzZDAzYzJmIiwib2JqZWN0IjoiY2hhdC5jb21wbGV0aW9uLmNodW5rIiwiY3JlYXRlZCI6MTc2NzgwNDY1MSwibW9kZWwiOiJtaXN0cmFsLW1lZGl1bS0yNTA4IiwiY2hvaWNlcyI6W3siaW5kZXgiOjAsImRlbHRhIjp7ImNvbnRlbnQiOiJcIjogMiJ9LCJmaW5pc2hfcmVhc29uIjpudWxsfV0sInAiOiJhYmNkZWZnaCJ9Cgo="
+    },
+    {
+      "b64": "ZGF0YTogeyJpZCI6IjhjODNlMzM5NjY2MDRiMDI4YjI4Mzc0ZDkzZDAzYzJmIiwib2JqZWN0IjoiY2hhdC5jb21wbGV0aW9uLmNodW5rIiwiY3JlYXRlZCI6MTc2NzgwNDY1MSwibW9kZWwiOiJtaXN0cmFsLW1lZGl1bS0yNTA4IiwiY2hvaWNlcyI6W3siaW5kZXgiOjAsImRlbHRhIjp7ImNvbnRlbnQiOiI4In0sImZpbmlzaF9yZWFzb24iOm51bGx9XSwicCI6ImFiY2RlZmdoaWprbG1ub3BxcnN0In0="
+    },
+    {
+      "b64": "Cgo="
+    },
+    {
+      "b64": "ZGF0YTogeyJpZCI6IjhjODNlMzM5NjY2MDRiMDI4YjI4Mzc0ZDkzZDAzYzJmIiwib2JqZWN0IjoiY2hhdC5jb21wbGV0aW9uLmNodW5rIiwiY3JlYXRlZCI6MTc2NzgwNDY1MSwibW9kZWwiOiJtaXN0cmFsLW1lZGl1bS0yNTA4IiwiY2hvaWNlcyI6W3siaW5kZXgiOjAsImRlbHRhIjp7ImNvbnRlbnQiOiIsXG4gIFwibmFtZSJ9LCJmaW5pc2hfcmVhc29uIjpudWxsfV0sInAiOiJhYmNkZWZnaGlqa2xtbm9wcXJzdHV2d3h5ejAxMjM0In0KCg=="
+    },
+    {
+      "b64": "ZGF0YTogeyJpZCI6IjhjODNlMzM5NjY2MDRiMDI4YjI4Mzc0ZDkzZDAzYzJmIiwib2JqZWN0IjoiY2hhdC5jb21wbGV0aW9uLmNodW5rIiwiY3JlYXRlZCI6MTc2NzgwNDY1MSwibW9kZWwiOiJtaXN0cmFsLW1lZGl1bS0yNTA4IiwiY2hvaWNlcyI6W3siaW5kZXgiOjAsImRlbHRhIjp7ImNvbnRlbnQiOiJcIjogXCJFbWlseSJ9LCJmaW5pc2hfcmVhc29uIjpudWxsfV0sInAiOiJhIn0="
+    },
+    {
+      "b64": "Cgo="
+    },
+    {
+      "b64": "ZGF0YTogeyJpZCI6IjhjODNlMzM5NjY2MDRiMDI4YjI4Mzc0ZDkzZDAzYzJmIiwib2JqZWN0IjoiY2hhdC5jb21wbGV0aW9uLmNodW5rIiwiY3JlYXRlZCI6MTc2NzgwNDY1MSwibW9kZWwiOiJtaXN0cmFsLW1lZGl1bS0yNTA4IiwiY2hvaWNlcyI6W3siaW5kZXgiOjAsImRlbHRhIjp7ImNvbnRlbnQiOiIgSm9obnNvblwiLFxuICBcIiJ9LCJmaW5pc2hfcmVhc29uIjpudWxsfV0sInAiOiJhYmNkZWZnIn0KCg=="
+    },
+    {
+      "b64": "ZGF0YTogeyJpZCI6IjhjODNlMzM5NjY2MDRiMDI4YjI4Mzc0ZDkzZDAzYzJmIiwib2JqZWN0IjoiY2hhdC5jb21wbGV0aW9uLmNodW5rIiwiY3JlYXRlZCI6MTc2NzgwNDY1MSwibW9kZWwiOiJtaXN0cmFsLW1lZGl1bS0yNTA4IiwiY2hvaWNlcyI6W3siaW5kZXgiOjAsImRlbHRhIjp7ImNvbnRlbnQiOiJvY2N1cGF0aW9uXCI6IFwiU29mdHdhcmUifSwiZmluaXNoX3JlYXNvbiI6bnVsbH1dLCJwIjoiYSJ9Cgo="
+    },
+    {
+      "b64": "ZGF0YTogeyJpZCI6IjhjODNlMzM5NjY2MDRiMDI4YjI4Mzc0ZDkzZDAzYzJmIiwib2JqZWN0IjoiY2hhdC5jb21wbGV0aW9uLmNodW5rIiwiY3JlYXRlZCI6MTc2NzgwNDY1MSwibW9kZWwiOiJtaXN0cmFsLW1lZGl1bS0yNTA4IiwiY2hvaWNlcyI6W3siaW5kZXgiOjAsImRlbHRhIjp7ImNvbnRlbnQiOiIgRW5naW5lZXJcIlxuIn0sImZpbmlzaF9yZWFzb24iOm51bGx9XSwicCI6ImFiY2RlZmdoaWprbCJ9"
+    },
+    {
+      "b64": "Cgo="
+    },
+    {
+      "b64": "ZGF0YTogeyJpZCI6IjhjODNlMzM5NjY2MDRiMDI4YjI4Mzc0ZDkzZDAzYzJmIiwib2JqZWN0IjoiY2hhdC5jb21wbGV0aW9uLmNodW5rIiwiY3JlYXRlZCI6MTc2NzgwNDY1MSwibW9kZWwiOiJtaXN0cmFsLW1lZGl1bS0yNTA4IiwiY2hvaWNlcyI6W3siaW5kZXgiOjAsImRlbHRhIjp7ImNvbnRlbnQiOiJ9In0sImZpbmlzaF9yZWFzb24iOiJzdG9wIn1dLCJ1c2FnZSI6eyJwcm9tcHRfdG9rZW5zIjo4LCJ0b3RhbF90b2tlbnMiOjM1LCJjb21wbGV0aW9uX3Rva2VucyI6Mjd9LCJwIjoiYWJjZGVmZ2hpamtsbW5vcHFyc3R1dncifQoKZGF0YTogW0RPTkVdCgo="
     }
   ],
   "model_spec": "mistral:mistral-medium-2508",
   "provider": "mistral",
   "request": {
     "body": {
-      "b64": "eyJtYXhfdG9rZW5zIjo1MDAsIm1lc3NhZ2VzIjpbeyJjb250ZW50IjoiR2VuZXJhdGUgYSBzb2Z0d2FyZSBlbmdpbmVlciBwcm9maWxlIiwicm9sZSI6InVzZXIifV0sIm1vZGVsIjoibWlzdHJhbC1tZWRpdW0tMjUwOCIsInJhbmRvbV9zZWVkIjo0Miwic3RyZWFtIjp0cnVlLCJzdHJlYW1fb3B0aW9ucyI6eyJpbmNsdWRlX3VzYWdlIjp0cnVlfSwidGVtcGVyYXR1cmUiOjAuMCwidG9vbF9jaG9pY2UiOnsiZnVuY3Rpb24iOnsibmFtZSI6InN0cnVjdHVyZWRfb3V0cHV0In0sInR5cGUiOiJmdW5jdGlvbiJ9LCJ0b29scyI6W3siZnVuY3Rpb24iOnsiZGVzY3JpcHRpb24iOiJHZW5lcmF0ZSBzdHJ1Y3R1cmVkIG91dHB1dCBtYXRjaGluZyB0aGUgcHJvdmlkZWQgc2NoZW1hIiwibmFtZSI6InN0cnVjdHVyZWRfb3V0cHV0IiwicGFyYW1ldGVycyI6eyJhZGRpdGlvbmFsUHJvcGVydGllcyI6ZmFsc2UsInByb3BlcnRpZXMiOnsiYWdlIjp7ImRlc2NyaXB0aW9uIjoiUGVyc29uJ3MgYWdlIGluIHllYXJzIiwibWluaW11bSI6MSwidHlwZSI6ImludGVnZXIifSwibmFtZSI6eyJkZXNjcmlwdGlvbiI6IlBlcnNvbidzIGZ1bGwgbmFtZSIsInR5cGUiOiJzdHJpbmcifSwib2NjdXBhdGlvbiI6eyJkZXNjcmlwdGlvbiI6IlBlcnNvbidzIGpvYiBvciBwcm9mZXNzaW9uIiwidHlwZSI6InN0cmluZyJ9fSwicmVxdWlyZWQiOlsibmFtZSIsImFnZSJdLCJ0eXBlIjoib2JqZWN0In19LCJ0eXBlIjoiZnVuY3Rpb24ifV19"
+      "b64": "eyJtYXhfdG9rZW5zIjo1MDAsIm1lc3NhZ2VzIjpbeyJjb250ZW50IjoiR2VuZXJhdGUgYSBzb2Z0d2FyZSBlbmdpbmVlciBwcm9maWxlIiwicm9sZSI6InVzZXIifV0sIm1vZGVsIjoibWlzdHJhbC1tZWRpdW0tMjUwOCIsInJhbmRvbV9zZWVkIjo0MiwicmVzcG9uc2VfZm9ybWF0Ijp7Impzb25fc2NoZW1hIjp7Im5hbWUiOiJvdXRwdXRfc2NoZW1hIiwic2NoZW1hIjp7ImFkZGl0aW9uYWxQcm9wZXJ0aWVzIjpmYWxzZSwicHJvcGVydGllcyI6eyJhZ2UiOnsiZGVzY3JpcHRpb24iOiJQZXJzb24ncyBhZ2UgaW4geWVhcnMiLCJtaW5pbXVtIjoxLCJ0eXBlIjoiaW50ZWdlciJ9LCJuYW1lIjp7ImRlc2NyaXB0aW9uIjoiUGVyc29uJ3MgZnVsbCBuYW1lIiwidHlwZSI6InN0cmluZyJ9LCJvY2N1cGF0aW9uIjp7ImRlc2NyaXB0aW9uIjoiUGVyc29uJ3Mgam9iIG9yIHByb2Zlc3Npb24iLCJ0eXBlIjoic3RyaW5nIn19LCJyZXF1aXJlZCI6WyJuYW1lIiwiYWdlIl0sInR5cGUiOiJvYmplY3QifSwic3RyaWN0Ijp0cnVlfSwidHlwZSI6Impzb25fc2NoZW1hIn0sInN0cmVhbSI6dHJ1ZSwic3RyZWFtX29wdGlvbnMiOnsiaW5jbHVkZV91c2FnZSI6dHJ1ZX0sInRlbXBlcmF0dXJlIjowLjB9"
     },
     "canonical_json": {
       "max_tokens": 500,
@@ -27,49 +57,41 @@
       ],
       "model": "mistral-medium-2508",
       "random_seed": 42,
+      "response_format": {
+        "json_schema": {
+          "name": "output_schema",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "age": {
+                "description": "Person's age in years",
+                "minimum": 1,
+                "type": "integer"
+              },
+              "name": {
+                "description": "Person's full name",
+                "type": "string"
+              },
+              "occupation": {
+                "description": "Person's job or profession",
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "age"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
       "stream": true,
       "stream_options": {
         "include_usage": true
       },
-      "temperature": 0.0,
-      "tool_choice": {
-        "function": {
-          "name": "structured_output"
-        },
-        "type": "function"
-      },
-      "tools": [
-        {
-          "function": {
-            "description": "Generate structured output matching the provided schema",
-            "name": "structured_output",
-            "parameters": {
-              "additionalProperties": false,
-              "properties": {
-                "age": {
-                  "description": "Person's age in years",
-                  "minimum": 1,
-                  "type": "integer"
-                },
-                "name": {
-                  "description": "Person's full name",
-                  "type": "string"
-                },
-                "occupation": {
-                  "description": "Person's job or profession",
-                  "type": "string"
-                }
-              },
-              "required": [
-                "name",
-                "age"
-              ],
-              "type": "object"
-            }
-          },
-          "type": "function"
-        }
-      ]
+      "temperature": 0.0
     },
     "headers": {
       "accept": "text/event-stream",
@@ -88,17 +110,17 @@
       "cf-ray": "[REDACTED:cf-ray]",
       "connection": "keep-alive",
       "content-type": "text/event-stream; charset=utf-8",
-      "date": "Wed, 07 Jan 2026 15:29:37 GMT",
+      "date": "Wed, 07 Jan 2026 16:50:51 GMT",
       "mistral-correlation-id": "[REDACTED:mistral-correlation-id]",
       "server": "cloudflare",
       "set-cookie": "[REDACTED:set-cookie]",
       "strict-transport-security": "max-age=15552000; includeSubDomains; preload",
       "transfer-encoding": "chunked",
       "x-content-type-options": "nosniff",
-      "x-envoy-upstream-service-time": "1088",
-      "x-kong-proxy-latency": "9",
+      "x-envoy-upstream-service-time": "108",
+      "x-kong-proxy-latency": "8",
       "x-kong-request-id": "[REDACTED:x-kong-request-id]",
-      "x-kong-upstream-latency": "1088"
+      "x-kong-upstream-latency": "109"
     },
     "status": 200
   }

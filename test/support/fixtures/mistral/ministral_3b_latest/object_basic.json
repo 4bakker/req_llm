@@ -3,7 +3,7 @@
   "provider": "mistral",
   "request": {
     "body": {
-      "b64": "eyJtYXhfdG9rZW5zIjo1MDAsIm1lc3NhZ2VzIjpbeyJjb250ZW50IjoiR2VuZXJhdGUgYSBzb2Z0d2FyZSBlbmdpbmVlciBwcm9maWxlIiwicm9sZSI6InVzZXIifV0sIm1vZGVsIjoibWluaXN0cmFsLTNiLWxhdGVzdCIsInJhbmRvbV9zZWVkIjo0Miwic3RyZWFtIjpmYWxzZSwidGVtcGVyYXR1cmUiOjAuMCwidG9vbF9jaG9pY2UiOnsiZnVuY3Rpb24iOnsibmFtZSI6InN0cnVjdHVyZWRfb3V0cHV0In0sInR5cGUiOiJmdW5jdGlvbiJ9LCJ0b29scyI6W3siZnVuY3Rpb24iOnsiZGVzY3JpcHRpb24iOiJHZW5lcmF0ZSBzdHJ1Y3R1cmVkIG91dHB1dCBtYXRjaGluZyB0aGUgcHJvdmlkZWQgc2NoZW1hIiwibmFtZSI6InN0cnVjdHVyZWRfb3V0cHV0IiwicGFyYW1ldGVycyI6eyJhZGRpdGlvbmFsUHJvcGVydGllcyI6ZmFsc2UsInByb3BlcnRpZXMiOnsiYWdlIjp7ImRlc2NyaXB0aW9uIjoiUGVyc29uJ3MgYWdlIGluIHllYXJzIiwibWluaW11bSI6MSwidHlwZSI6ImludGVnZXIifSwibmFtZSI6eyJkZXNjcmlwdGlvbiI6IlBlcnNvbidzIGZ1bGwgbmFtZSIsInR5cGUiOiJzdHJpbmcifSwib2NjdXBhdGlvbiI6eyJkZXNjcmlwdGlvbiI6IlBlcnNvbidzIGpvYiBvciBwcm9mZXNzaW9uIiwidHlwZSI6InN0cmluZyJ9fSwicmVxdWlyZWQiOlsibmFtZSIsImFnZSJdLCJ0eXBlIjoib2JqZWN0In19LCJ0eXBlIjoiZnVuY3Rpb24ifV19"
+      "b64": "eyJtYXhfdG9rZW5zIjo1MDAsIm1lc3NhZ2VzIjpbeyJjb250ZW50IjoiR2VuZXJhdGUgYSBzb2Z0d2FyZSBlbmdpbmVlciBwcm9maWxlIiwicm9sZSI6InVzZXIifV0sIm1vZGVsIjoibWluaXN0cmFsLTNiLWxhdGVzdCIsInJlc3BvbnNlX2Zvcm1hdCI6eyJqc29uX3NjaGVtYSI6eyJuYW1lIjoib3V0cHV0X3NjaGVtYSIsInNjaGVtYSI6eyJhZGRpdGlvbmFsUHJvcGVydGllcyI6ZmFsc2UsInByb3BlcnRpZXMiOnsiYWdlIjp7ImRlc2NyaXB0aW9uIjoiUGVyc29uJ3MgYWdlIGluIHllYXJzIiwibWluaW11bSI6MSwidHlwZSI6ImludGVnZXIifSwibmFtZSI6eyJkZXNjcmlwdGlvbiI6IlBlcnNvbidzIGZ1bGwgbmFtZSIsInR5cGUiOiJzdHJpbmcifSwib2NjdXBhdGlvbiI6eyJkZXNjcmlwdGlvbiI6IlBlcnNvbidzIGpvYiBvciBwcm9mZXNzaW9uIiwidHlwZSI6InN0cmluZyJ9fSwicmVxdWlyZWQiOlsibmFtZSIsImFnZSJdLCJ0eXBlIjoib2JqZWN0In0sInN0cmljdCI6dHJ1ZX0sInR5cGUiOiJqc29uX3NjaGVtYSJ9LCJzdHJlYW0iOmZhbHNlLCJ0ZW1wZXJhdHVyZSI6MC4wfQ=="
     },
     "canonical_json": {
       "max_tokens": 500,
@@ -14,47 +14,38 @@
         }
       ],
       "model": "ministral-3b-latest",
-      "random_seed": 42,
-      "stream": false,
-      "temperature": 0.0,
-      "tool_choice": {
-        "function": {
-          "name": "structured_output"
-        },
-        "type": "function"
-      },
-      "tools": [
-        {
-          "function": {
-            "description": "Generate structured output matching the provided schema",
-            "name": "structured_output",
-            "parameters": {
-              "additionalProperties": false,
-              "properties": {
-                "age": {
-                  "description": "Person's age in years",
-                  "minimum": 1,
-                  "type": "integer"
-                },
-                "name": {
-                  "description": "Person's full name",
-                  "type": "string"
-                },
-                "occupation": {
-                  "description": "Person's job or profession",
-                  "type": "string"
-                }
+      "response_format": {
+        "json_schema": {
+          "name": "output_schema",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "age": {
+                "description": "Person's age in years",
+                "minimum": 1,
+                "type": "integer"
               },
-              "required": [
-                "name",
-                "age"
-              ],
-              "type": "object"
-            }
+              "name": {
+                "description": "Person's full name",
+                "type": "string"
+              },
+              "occupation": {
+                "description": "Person's job or profession",
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "age"
+            ],
+            "type": "object"
           },
-          "type": "function"
-        }
-      ]
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "stream": false,
+      "temperature": 0.0
     },
     "headers": {
       "accept-encoding": [
@@ -75,32 +66,23 @@
     "body": {
       "choices": [
         {
-          "finish_reason": "tool_calls",
+          "finish_reason": "stop",
           "index": 0,
           "message": {
-            "content": "",
+            "content": "{\n  \"age\": 32,\n  \"name\": \"Alexandra Chen\",\n  \"occupation\": \"Senior Software Engineer (Backend & Cloud Architect)\"\n}",
             "role": "assistant",
-            "tool_calls": [
-              {
-                "function": {
-                  "arguments": "{\"name\": \"Jane Doe\", \"age\": 28, \"occupation\": \"Software Engineer\"}",
-                  "name": "structured_output"
-                },
-                "id": "hH3Dv7JXm",
-                "index": 0
-              }
-            ]
+            "tool_calls": null
           }
         }
       ],
-      "created": 1767799766,
-      "id": "f5a9c431b50f432f8c3bb3f246ce69df",
+      "created": 1767804646,
+      "id": "2065a979cac74e009365e5b1d044ae86",
       "model": "ministral-3b-latest",
       "object": "chat.completion",
       "usage": {
-        "completion_tokens": 26,
-        "prompt_tokens": 134,
-        "total_tokens": 160
+        "completion_tokens": 34,
+        "prompt_tokens": 8,
+        "total_tokens": 42
       }
     },
     "headers": {
@@ -123,7 +105,7 @@
         "application/json"
       ],
       "date": [
-        "Wed, 07 Jan 2026 15:29:26 GMT"
+        "Wed, 07 Jan 2026 16:50:47 GMT"
       ],
       "mistral-correlation-id": [
         "[REDACTED:mistral-correlation-id]"
@@ -145,7 +127,7 @@
         "nosniff"
       ],
       "x-envoy-upstream-service-time": [
-        "131"
+        "240"
       ],
       "x-kong-proxy-latency": [
         "8"
@@ -154,7 +136,7 @@
         "[REDACTED:x-kong-request-id]"
       ],
       "x-kong-upstream-latency": [
-        "132"
+        "241"
       ],
       "x-ratelimit-limit-req-60-second": [
         "360"
@@ -175,7 +157,7 @@
         "[REDACTED]"
       ],
       "x-ratelimit-tokens-query-cost": [
-        "160"
+        "42"
       ]
     },
     "status": 200

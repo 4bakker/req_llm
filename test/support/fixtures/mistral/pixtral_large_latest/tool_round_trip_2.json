@@ -3,7 +3,7 @@
   "provider": "mistral",
   "request": {
     "body": {
-      "b64": "eyJtYXhfdG9rZW5zIjoxMjgwMCwibWVzc2FnZXMiOlt7ImNvbnRlbnQiOiJVc2UgdGhlIGFkZCB0b29sIHRvIGNvbXB1dGUgMiArIDMuIEFmdGVyIHRoZSB0b29sIHJlc3VsdCBhcnJpdmVzLCByZXNwb25kIHdpdGggJ3N1bT08dmFsdWU+Jy4iLCJyb2xlIjoidXNlciJ9LHsiY29udGVudCI6W10sInJvbGUiOiJhc3Npc3RhbnQiLCJ0b29sX2NhbGxzIjpbeyJmdW5jdGlvbiI6eyJhcmd1bWVudHMiOiJ7XCJhXCI6MixcImJcIjozfSIsIm5hbWUiOiJhZGQifSwiaWQiOiJPN2YydGo3NU4iLCJ0eXBlIjoiZnVuY3Rpb24ifV19LHsiY29udGVudCI6IjUiLCJuYW1lIjoiYWRkIiwicm9sZSI6InRvb2wiLCJ0b29sX2NhbGxfaWQiOiJPN2YydGo3NU4ifV0sIm1vZGVsIjoicGl4dHJhbC1sYXJnZS1sYXRlc3QiLCJyYW5kb21fc2VlZCI6NDIsInN0cmVhbSI6ZmFsc2UsInRlbXBlcmF0dXJlIjowLjB9"
+      "b64": "eyJtYXhfdG9rZW5zIjoxMjgwMCwibWVzc2FnZXMiOlt7ImNvbnRlbnQiOiJVc2UgdGhlIGFkZCB0b29sIHRvIGNvbXB1dGUgMiArIDMuIEFmdGVyIHRoZSB0b29sIHJlc3VsdCBhcnJpdmVzLCByZXNwb25kIHdpdGggJ3N1bT08dmFsdWU+Jy4iLCJyb2xlIjoidXNlciJ9LHsiY29udGVudCI6W10sInJvbGUiOiJhc3Npc3RhbnQiLCJ0b29sX2NhbGxzIjpbeyJmdW5jdGlvbiI6eyJhcmd1bWVudHMiOiJ7XCJhXCI6MixcImJcIjozfSIsIm5hbWUiOiJhZGQifSwiaWQiOiJFSmVqQmZwNXoiLCJ0eXBlIjoiZnVuY3Rpb24ifV19LHsiY29udGVudCI6IjUiLCJuYW1lIjoiYWRkIiwicm9sZSI6InRvb2wiLCJ0b29sX2NhbGxfaWQiOiJFSmVqQmZwNXoifV0sIm1vZGVsIjoicGl4dHJhbC1sYXJnZS1sYXRlc3QiLCJzdHJlYW0iOmZhbHNlLCJ0ZW1wZXJhdHVyZSI6MC4wfQ=="
     },
     "canonical_json": {
       "max_tokens": 12800,
@@ -21,7 +21,7 @@
                 "arguments": "{\"a\":2,\"b\":3}",
                 "name": "add"
               },
-              "id": "O7f2tj75N",
+              "id": "EJejBfp5z",
               "type": "function"
             }
           ]
@@ -30,11 +30,10 @@
           "content": "5",
           "name": "add",
           "role": "tool",
-          "tool_call_id": "O7f2tj75N"
+          "tool_call_id": "EJejBfp5z"
         }
       ],
       "model": "pixtral-large-latest",
-      "random_seed": 42,
       "stream": false,
       "temperature": 0.0
     },
@@ -66,14 +65,14 @@
           }
         }
       ],
-      "created": 1767799794,
-      "id": "d2b4bce580274ea481c4b78cebff6759",
+      "created": 1767804665,
+      "id": "9560f8ae6a1a4a9e91858358db8b1bad",
       "model": "pixtral-large-latest",
       "object": "chat.completion",
       "usage": {
         "completion_tokens": 4,
-        "prompt_tokens": 83,
-        "total_tokens": 87
+        "prompt_tokens": 79,
+        "total_tokens": 83
       }
     },
     "headers": {
@@ -96,7 +95,7 @@
         "application/json"
       ],
       "date": [
-        "Wed, 07 Jan 2026 15:29:54 GMT"
+        "Wed, 07 Jan 2026 16:51:05 GMT"
       ],
       "mistral-correlation-id": [
         "[REDACTED:mistral-correlation-id]"
@@ -118,16 +117,16 @@
         "nosniff"
       ],
       "x-envoy-upstream-service-time": [
-        "222"
+        "242"
       ],
       "x-kong-proxy-latency": [
-        "6"
+        "7"
       ],
       "x-kong-request-id": [
         "[REDACTED:x-kong-request-id]"
       ],
       "x-kong-upstream-latency": [
-        "224"
+        "243"
       ],
       "x-ratelimit-limit-req-60-second": [
         "360"
@@ -148,7 +147,7 @@
         "[REDACTED]"
       ],
       "x-ratelimit-tokens-query-cost": [
-        "87"
+        "83"
       ]
     },
     "status": 200

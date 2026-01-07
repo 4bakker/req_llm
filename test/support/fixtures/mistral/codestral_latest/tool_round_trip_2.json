@@ -3,7 +3,7 @@
   "provider": "mistral",
   "request": {
     "body": {
-      "b64": "eyJtYXhfdG9rZW5zIjo0MDksIm1lc3NhZ2VzIjpbeyJjb250ZW50IjoiVXNlIHRoZSBhZGQgdG9vbCB0byBjb21wdXRlIDIgKyAzLiBBZnRlciB0aGUgdG9vbCByZXN1bHQgYXJyaXZlcywgcmVzcG9uZCB3aXRoICdzdW09PHZhbHVlPicuIiwicm9sZSI6InVzZXIifSx7ImNvbnRlbnQiOltdLCJyb2xlIjoiYXNzaXN0YW50IiwidG9vbF9jYWxscyI6W3siZnVuY3Rpb24iOnsiYXJndW1lbnRzIjoie1wiYVwiOjIsXCJiXCI6M30iLCJuYW1lIjoiYWRkIn0sImlkIjoibXUwQWRpZkpiIiwidHlwZSI6ImZ1bmN0aW9uIn1dfSx7ImNvbnRlbnQiOiI1IiwibmFtZSI6ImFkZCIsInJvbGUiOiJ0b29sIiwidG9vbF9jYWxsX2lkIjoibXUwQWRpZkpiIn1dLCJtb2RlbCI6ImNvZGVzdHJhbC1sYXRlc3QiLCJyYW5kb21fc2VlZCI6NDIsInN0cmVhbSI6ZmFsc2UsInRlbXBlcmF0dXJlIjowLjB9"
+      "b64": "eyJtYXhfdG9rZW5zIjo0MDksIm1lc3NhZ2VzIjpbeyJjb250ZW50IjoiVXNlIHRoZSBhZGQgdG9vbCB0byBjb21wdXRlIDIgKyAzLiBBZnRlciB0aGUgdG9vbCByZXN1bHQgYXJyaXZlcywgcmVzcG9uZCB3aXRoICdzdW09PHZhbHVlPicuIiwicm9sZSI6InVzZXIifSx7ImNvbnRlbnQiOltdLCJyb2xlIjoiYXNzaXN0YW50IiwidG9vbF9jYWxscyI6W3siZnVuY3Rpb24iOnsiYXJndW1lbnRzIjoie1wiYVwiOjIsXCJiXCI6M30iLCJuYW1lIjoiYWRkIn0sImlkIjoid0k4bkoxRVJFIiwidHlwZSI6ImZ1bmN0aW9uIn1dfSx7ImNvbnRlbnQiOiI1IiwibmFtZSI6ImFkZCIsInJvbGUiOiJ0b29sIiwidG9vbF9jYWxsX2lkIjoid0k4bkoxRVJFIn1dLCJtb2RlbCI6ImNvZGVzdHJhbC1sYXRlc3QiLCJzdHJlYW0iOmZhbHNlLCJ0ZW1wZXJhdHVyZSI6MC4wfQ=="
     },
     "canonical_json": {
       "max_tokens": 409,
@@ -21,7 +21,7 @@
                 "arguments": "{\"a\":2,\"b\":3}",
                 "name": "add"
               },
-              "id": "mu0AdifJb",
+              "id": "wI8nJ1ERE",
               "type": "function"
             }
           ]
@@ -30,11 +30,10 @@
           "content": "5",
           "name": "add",
           "role": "tool",
-          "tool_call_id": "mu0AdifJb"
+          "tool_call_id": "wI8nJ1ERE"
         }
       ],
       "model": "codestral-latest",
-      "random_seed": 42,
       "stream": false,
       "temperature": 0.0
     },
@@ -66,8 +65,8 @@
           }
         }
       ],
-      "created": 1767799758,
-      "id": "a15f9287cf734b84a35346c3307cec52",
+      "created": 1767804642,
+      "id": "6ea566f5e8714886a0fd1601ab2849d7",
       "model": "codestral-latest",
       "object": "chat.completion",
       "usage": {
@@ -96,7 +95,7 @@
         "application/json"
       ],
       "date": [
-        "Wed, 07 Jan 2026 15:29:19 GMT"
+        "Wed, 07 Jan 2026 16:50:42 GMT"
       ],
       "mistral-correlation-id": [
         "[REDACTED:mistral-correlation-id]"
@@ -118,16 +117,16 @@
         "nosniff"
       ],
       "x-envoy-upstream-service-time": [
-        "111"
+        "120"
       ],
       "x-kong-proxy-latency": [
-        "9"
+        "8"
       ],
       "x-kong-request-id": [
         "[REDACTED:x-kong-request-id]"
       ],
       "x-kong-upstream-latency": [
-        "112"
+        "121"
       ],
       "x-ratelimit-limit-req-60-second": [
         "360"

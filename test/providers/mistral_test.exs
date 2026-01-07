@@ -185,11 +185,10 @@ defmodule ReqLLM.Providers.MistralTest do
            assert json["max_tokens"] == 55
            assert json["top_p"] == 0.9
          end},
-        {[presence_penalty: 0.2, user: "test_user", seed: 12_345],
+        {[presence_penalty: 0.2, user: "test_user"],
          fn json ->
            assert json["presence_penalty"] == 0.2
            assert json["user"] == "test_user"
-           assert json["seed"] == 12_345
          end}
       ]
 
@@ -456,6 +455,138 @@ defmodule ReqLLM.Providers.MistralTest do
       assert decoded["random_seed"] == 42
       assert decoded["safe_prompt"] == true
       assert decoded["prediction"] == %{"type" => "content", "content" => "test"}
+    end
+
+    test "encode_body includes parallel_tool_calls from provider_options" do
+      {:ok, model} = ReqLLM.model("mistral:mistral-large-latest")
+      context = context_fixture()
+
+      mock_request = %Req.Request{
+        options: [
+          context: context,
+          model: model.model,
+          stream: false,
+          provider_options: [parallel_tool_calls: true]
+        ]
+      }
+
+      updated_request = Mistral.encode_body(mock_request)
+      decoded = Jason.decode!(updated_request.body)
+
+      assert decoded["parallel_tool_calls"] == true
+    end
+
+    test "encode_body includes prompt_mode from provider_options" do
+      {:ok, model} = ReqLLM.model("mistral:mistral-large-latest")
+      context = context_fixture()
+
+      mock_request = %Req.Request{
+        options: [
+          context: context,
+          model: model.model,
+          stream: false,
+          provider_options: [prompt_mode: :reasoning]
+        ]
+      }
+
+      updated_request = Mistral.encode_body(mock_request)
+      decoded = Jason.decode!(updated_request.body)
+
+      assert decoded["prompt_mode"] == "reasoning"
+    end
+
+    test "encode_body includes metadata from provider_options" do
+      {:ok, model} = ReqLLM.model("mistral:mistral-large-latest")
+      context = context_fixture()
+
+      metadata = %{"user_id" => "abc123", "session" => "xyz789"}
+
+      mock_request = %Req.Request{
+        options: [
+          context: context,
+          model: model.model,
+          stream: false,
+          provider_options: [metadata: metadata]
+        ]
+      }
+
+      updated_request = Mistral.encode_body(mock_request)
+      decoded = Jason.decode!(updated_request.body)
+
+      assert decoded["metadata"] == %{"user_id" => "abc123", "session" => "xyz789"}
+    end
+
+    test "encode_body includes n from core options" do
+      {:ok, model} = ReqLLM.model("mistral:mistral-large-latest")
+      context = context_fixture()
+
+      mock_request = %Req.Request{
+        options: [
+          context: context,
+          model: model.model,
+          stream: false,
+          n: 3
+        ]
+      }
+
+      updated_request = Mistral.encode_body(mock_request)
+      decoded = Jason.decode!(updated_request.body)
+
+      assert decoded["n"] == 3
+    end
+
+    test "encode_body removes seed key (uses random_seed instead)" do
+      {:ok, model} = ReqLLM.model("mistral:mistral-large-latest")
+      context = context_fixture()
+
+      mock_request = %Req.Request{
+        options: [
+          context: context,
+          model: model.model,
+          stream: false,
+          seed: 12_345,
+          provider_options: [random_seed: 42]
+        ]
+      }
+
+      updated_request = Mistral.encode_body(mock_request)
+      decoded = Jason.decode!(updated_request.body)
+
+      refute Map.has_key?(decoded, "seed")
+      assert decoded["random_seed"] == 42
+    end
+
+    test "encode_body includes all new Mistral-specific options together" do
+      {:ok, model} = ReqLLM.model("mistral:mistral-large-latest")
+      context = context_fixture()
+
+      mock_request = %Req.Request{
+        options: [
+          context: context,
+          model: model.model,
+          stream: false,
+          n: 2,
+          provider_options: [
+            random_seed: 42,
+            safe_prompt: true,
+            prediction: %{type: "content", content: "test"},
+            parallel_tool_calls: false,
+            prompt_mode: :reasoning,
+            metadata: %{"key" => "value"}
+          ]
+        ]
+      }
+
+      updated_request = Mistral.encode_body(mock_request)
+      decoded = Jason.decode!(updated_request.body)
+
+      assert decoded["random_seed"] == 42
+      assert decoded["safe_prompt"] == true
+      assert decoded["prediction"] == %{"type" => "content", "content" => "test"}
+      assert decoded["parallel_tool_calls"] == false
+      assert decoded["prompt_mode"] == "reasoning"
+      assert decoded["metadata"] == %{"key" => "value"}
+      assert decoded["n"] == 2
     end
   end
 

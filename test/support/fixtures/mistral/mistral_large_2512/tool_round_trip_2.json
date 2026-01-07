@@ -3,7 +3,7 @@
   "provider": "mistral",
   "request": {
     "body": {
-      "b64": "eyJtYXhfdG9rZW5zIjoyNjIxNCwibWVzc2FnZXMiOlt7ImNvbnRlbnQiOiJVc2UgdGhlIGFkZCB0b29sIHRvIGNvbXB1dGUgMiArIDMuIEFmdGVyIHRoZSB0b29sIHJlc3VsdCBhcnJpdmVzLCByZXNwb25kIHdpdGggJ3N1bT08dmFsdWU+Jy4iLCJyb2xlIjoidXNlciJ9LHsiY29udGVudCI6W10sInJvbGUiOiJhc3Npc3RhbnQiLCJ0b29sX2NhbGxzIjpbeyJmdW5jdGlvbiI6eyJhcmd1bWVudHMiOiJ7XCJhXCI6MixcImJcIjozfSIsIm5hbWUiOiJhZGQifSwiaWQiOiJZaW8wUDVGQjYiLCJ0eXBlIjoiZnVuY3Rpb24ifV19LHsiY29udGVudCI6IjUiLCJuYW1lIjoiYWRkIiwicm9sZSI6InRvb2wiLCJ0b29sX2NhbGxfaWQiOiJZaW8wUDVGQjYifV0sIm1vZGVsIjoibWlzdHJhbC1sYXJnZS0yNTEyIiwicmFuZG9tX3NlZWQiOjQyLCJzdHJlYW0iOmZhbHNlLCJ0ZW1wZXJhdHVyZSI6MC4wfQ=="
+      "b64": "eyJtYXhfdG9rZW5zIjoyNjIxNCwibWVzc2FnZXMiOlt7ImNvbnRlbnQiOiJVc2UgdGhlIGFkZCB0b29sIHRvIGNvbXB1dGUgMiArIDMuIEFmdGVyIHRoZSB0b29sIHJlc3VsdCBhcnJpdmVzLCByZXNwb25kIHdpdGggJ3N1bT08dmFsdWU+Jy4iLCJyb2xlIjoidXNlciJ9LHsiY29udGVudCI6W10sInJvbGUiOiJhc3Npc3RhbnQiLCJ0b29sX2NhbGxzIjpbeyJmdW5jdGlvbiI6eyJhcmd1bWVudHMiOiJ7XCJhXCI6MixcImJcIjozfSIsIm5hbWUiOiJhZGQifSwiaWQiOiJyaUhWNFpKMU4iLCJ0eXBlIjoiZnVuY3Rpb24ifV19LHsiY29udGVudCI6IjUiLCJuYW1lIjoiYWRkIiwicm9sZSI6InRvb2wiLCJ0b29sX2NhbGxfaWQiOiJyaUhWNFpKMU4ifV0sIm1vZGVsIjoibWlzdHJhbC1sYXJnZS0yNTEyIiwic3RyZWFtIjpmYWxzZSwidGVtcGVyYXR1cmUiOjAuMH0="
     },
     "canonical_json": {
       "max_tokens": 26214,
@@ -21,7 +21,7 @@
                 "arguments": "{\"a\":2,\"b\":3}",
                 "name": "add"
               },
-              "id": "Yio0P5FB6",
+              "id": "riHV4ZJ1N",
               "type": "function"
             }
           ]
@@ -30,11 +30,10 @@
           "content": "5",
           "name": "add",
           "role": "tool",
-          "tool_call_id": "Yio0P5FB6"
+          "tool_call_id": "riHV4ZJ1N"
         }
       ],
       "model": "mistral-large-2512",
-      "random_seed": 42,
       "stream": false,
       "temperature": 0.0
     },
@@ -66,8 +65,8 @@
           }
         }
       ],
-      "created": 1767799777,
-      "id": "4c59a0fd4cf644bfaa246e5367a26705",
+      "created": 1767804643,
+      "id": "cc5a082b6bc24430b379e6295be05f53",
       "model": "mistral-large-2512",
       "object": "chat.completion",
       "usage": {
@@ -96,7 +95,7 @@
         "application/json"
       ],
       "date": [
-        "Wed, 07 Jan 2026 15:29:37 GMT"
+        "Wed, 07 Jan 2026 16:50:43 GMT"
       ],
       "mistral-correlation-id": [
         "[REDACTED:mistral-correlation-id]"
@@ -118,7 +117,7 @@
         "nosniff"
       ],
       "x-envoy-upstream-service-time": [
-        "299"
+        "309"
       ],
       "x-kong-proxy-latency": [
         "8"
@@ -127,7 +126,7 @@
         "[REDACTED:x-kong-request-id]"
       ],
       "x-kong-upstream-latency": [
-        "300"
+        "309"
       ],
       "x-ratelimit-limit-req-60-second": [
         "360"

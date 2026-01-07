@@ -3,7 +3,7 @@
   "provider": "mistral",
   "request": {
     "body": {
-      "b64": "eyJtYXhfdG9rZW5zIjo1MDAsIm1lc3NhZ2VzIjpbeyJjb250ZW50IjoiR2VuZXJhdGUgYSBzb2Z0d2FyZSBlbmdpbmVlciBwcm9maWxlIiwicm9sZSI6InVzZXIifV0sIm1vZGVsIjoibWlzdHJhbC1tZWRpdW0tbGF0ZXN0IiwicmFuZG9tX3NlZWQiOjQyLCJzdHJlYW0iOmZhbHNlLCJ0ZW1wZXJhdHVyZSI6MC4wLCJ0b29sX2Nob2ljZSI6eyJmdW5jdGlvbiI6eyJuYW1lIjoic3RydWN0dXJlZF9vdXRwdXQifSwidHlwZSI6ImZ1bmN0aW9uIn0sInRvb2xzIjpbeyJmdW5jdGlvbiI6eyJkZXNjcmlwdGlvbiI6IkdlbmVyYXRlIHN0cnVjdHVyZWQgb3V0cHV0IG1hdGNoaW5nIHRoZSBwcm92aWRlZCBzY2hlbWEiLCJuYW1lIjoic3RydWN0dXJlZF9vdXRwdXQiLCJwYXJhbWV0ZXJzIjp7ImFkZGl0aW9uYWxQcm9wZXJ0aWVzIjpmYWxzZSwicHJvcGVydGllcyI6eyJhZ2UiOnsiZGVzY3JpcHRpb24iOiJQZXJzb24ncyBhZ2UgaW4geWVhcnMiLCJtaW5pbXVtIjoxLCJ0eXBlIjoiaW50ZWdlciJ9LCJuYW1lIjp7ImRlc2NyaXB0aW9uIjoiUGVyc29uJ3MgZnVsbCBuYW1lIiwidHlwZSI6InN0cmluZyJ9LCJvY2N1cGF0aW9uIjp7ImRlc2NyaXB0aW9uIjoiUGVyc29uJ3Mgam9iIG9yIHByb2Zlc3Npb24iLCJ0eXBlIjoic3RyaW5nIn19LCJyZXF1aXJlZCI6WyJuYW1lIiwiYWdlIl0sInR5cGUiOiJvYmplY3QifX0sInR5cGUiOiJmdW5jdGlvbiJ9XX0="
+      "b64": "eyJtYXhfdG9rZW5zIjo1MDAsIm1lc3NhZ2VzIjpbeyJjb250ZW50IjoiR2VuZXJhdGUgYSBzb2Z0d2FyZSBlbmdpbmVlciBwcm9maWxlIiwicm9sZSI6InVzZXIifV0sIm1vZGVsIjoibWlzdHJhbC1tZWRpdW0tbGF0ZXN0IiwicmVzcG9uc2VfZm9ybWF0Ijp7Impzb25fc2NoZW1hIjp7Im5hbWUiOiJvdXRwdXRfc2NoZW1hIiwic2NoZW1hIjp7ImFkZGl0aW9uYWxQcm9wZXJ0aWVzIjpmYWxzZSwicHJvcGVydGllcyI6eyJhZ2UiOnsiZGVzY3JpcHRpb24iOiJQZXJzb24ncyBhZ2UgaW4geWVhcnMiLCJtaW5pbXVtIjoxLCJ0eXBlIjoiaW50ZWdlciJ9LCJuYW1lIjp7ImRlc2NyaXB0aW9uIjoiUGVyc29uJ3MgZnVsbCBuYW1lIiwidHlwZSI6InN0cmluZyJ9LCJvY2N1cGF0aW9uIjp7ImRlc2NyaXB0aW9uIjoiUGVyc29uJ3Mgam9iIG9yIHByb2Zlc3Npb24iLCJ0eXBlIjoic3RyaW5nIn19LCJyZXF1aXJlZCI6WyJuYW1lIiwiYWdlIl0sInR5cGUiOiJvYmplY3QifSwic3RyaWN0Ijp0cnVlfSwidHlwZSI6Impzb25fc2NoZW1hIn0sInN0cmVhbSI6ZmFsc2UsInRlbXBlcmF0dXJlIjowLjB9"
     },
     "canonical_json": {
       "max_tokens": 500,
@@ -14,47 +14,38 @@
         }
       ],
       "model": "mistral-medium-latest",
-      "random_seed": 42,
-      "stream": false,
-      "temperature": 0.0,
-      "tool_choice": {
-        "function": {
-          "name": "structured_output"
-        },
-        "type": "function"
-      },
-      "tools": [
-        {
-          "function": {
-            "description": "Generate structured output matching the provided schema",
-            "name": "structured_output",
-            "parameters": {
-              "additionalProperties": false,
-              "properties": {
-                "age": {
-                  "description": "Person's age in years",
-                  "minimum": 1,
-                  "type": "integer"
-                },
-                "name": {
-                  "description": "Person's full name",
-                  "type": "string"
-                },
-                "occupation": {
-                  "description": "Person's job or profession",
-                  "type": "string"
-                }
+      "response_format": {
+        "json_schema": {
+          "name": "output_schema",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "age": {
+                "description": "Person's age in years",
+                "minimum": 1,
+                "type": "integer"
               },
-              "required": [
-                "name",
-                "age"
-              ],
-              "type": "object"
-            }
+              "name": {
+                "description": "Person's full name",
+                "type": "string"
+              },
+              "occupation": {
+                "description": "Person's job or profession",
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "age"
+            ],
+            "type": "object"
           },
-          "type": "function"
-        }
-      ]
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "stream": false,
+      "temperature": 0.0
     },
     "headers": {
       "accept-encoding": [
@@ -75,64 +66,23 @@
     "body": {
       "choices": [
         {
-          "finish_reason": "tool_calls",
+          "finish_reason": "stop",
           "index": 0,
           "message": {
-            "content": "",
+            "content": "{\n  \"age\": 30,\n  \"name\": \"Jane Doe\",\n  \"occupation\": \"Software Engineer\"\n}",
             "role": "assistant",
-            "tool_calls": [
-              {
-                "function": {
-                  "arguments": "{\"name\": \"Emily Carter\", \"age\": 28, \"occupation\": \"Software Engineer\"}",
-                  "name": "structured_output"
-                },
-                "id": "so0mpfL1Y",
-                "index": 0
-              },
-              {
-                "function": {
-                  "arguments": "{\"name\": \"James Rodriguez\", \"age\": 32, \"occupation\": \"Senior Software Engineer\"}",
-                  "name": "structured_output"
-                },
-                "id": "f3jQ3dpVi",
-                "index": 1
-              },
-              {
-                "function": {
-                  "arguments": "{\"name\": \"Sophia Patel\", \"age\": 25, \"occupation\": \"Frontend Developer\"}",
-                  "name": "structured_output"
-                },
-                "id": "d1uRgqbQr",
-                "index": 2
-              },
-              {
-                "function": {
-                  "arguments": "{\"name\": \"Daniel Kim\", \"age\": 35, \"occupation\": \"Backend Engineer\"}",
-                  "name": "structured_output"
-                },
-                "id": "4ISxI2U26",
-                "index": 3
-              },
-              {
-                "function": {
-                  "arguments": "{\"name\": \"Olivia Smith\", \"age\": 30, \"occupation\": \"Full Stack Developer\"}",
-                  "name": "structured_output"
-                },
-                "id": "YMvlWZH4V",
-                "index": 4
-              }
-            ]
+            "tool_calls": null
           }
         }
       ],
-      "created": 1767799771,
-      "id": "cf99e4441fcf40db8053d7cca3162a6f",
+      "created": 1767804647,
+      "id": "361bf0ee30ec4a2eb1e3b25ea8b3f1e4",
       "model": "mistral-medium-latest",
       "object": "chat.completion",
       "usage": {
-        "completion_tokens": 131,
-        "prompt_tokens": 134,
-        "total_tokens": 265
+        "completion_tokens": 27,
+        "prompt_tokens": 8,
+        "total_tokens": 35
       }
     },
     "headers": {
@@ -155,7 +105,7 @@
         "application/json"
       ],
       "date": [
-        "Wed, 07 Jan 2026 15:29:33 GMT"
+        "Wed, 07 Jan 2026 16:50:47 GMT"
       ],
       "mistral-correlation-id": [
         "[REDACTED:mistral-correlation-id]"
@@ -177,16 +127,16 @@
         "nosniff"
       ],
       "x-envoy-upstream-service-time": [
-        "1617"
+        "368"
       ],
       "x-kong-proxy-latency": [
-        "10"
+        "9"
       ],
       "x-kong-request-id": [
         "[REDACTED:x-kong-request-id]"
       ],
       "x-kong-upstream-latency": [
-        "1618"
+        "368"
       ],
       "x-ratelimit-limit-req-60-second": [
         "360"
@@ -207,7 +157,7 @@
         "[REDACTED]"
       ],
       "x-ratelimit-tokens-query-cost": [
-        "265"
+        "35"
       ]
     },
     "status": 200

@@ -3,7 +3,7 @@
   "provider": "mistral",
   "request": {
     "body": {
-      "b64": "eyJtYXhfdG9rZW5zIjo1MCwibWVzc2FnZXMiOlt7ImNvbnRlbnQiOiJIZWxsbyB3b3JsZCEiLCJyb2xlIjoidXNlciJ9XSwibW9kZWwiOiJkZXZzdHJhbC0yNTEyIiwicmFuZG9tX3NlZWQiOjQyLCJzdHJlYW0iOmZhbHNlLCJ0ZW1wZXJhdHVyZSI6MC4wfQ=="
+      "b64": "eyJtYXhfdG9rZW5zIjo1MCwibWVzc2FnZXMiOlt7ImNvbnRlbnQiOiJIZWxsbyB3b3JsZCEiLCJyb2xlIjoidXNlciJ9XSwibW9kZWwiOiJkZXZzdHJhbC0yNTEyIiwic3RyZWFtIjpmYWxzZSwidGVtcGVyYXR1cmUiOjAuMH0="
     },
     "canonical_json": {
       "max_tokens": 50,
@@ -14,7 +14,6 @@
         }
       ],
       "model": "devstral-2512",
-      "random_seed": 42,
       "stream": false,
       "temperature": 0.0
     },
@@ -40,20 +39,20 @@
           "finish_reason": "stop",
           "index": 0,
           "message": {
-            "content": "Hello! 🌍 How can I assist you today?",
+            "content": "Hello! 🌍 How can I assist you today? 😊",
             "role": "assistant",
             "tool_calls": null
           }
         }
       ],
-      "created": 1767799765,
-      "id": "cca8fee5f90c4a77a6deed1940603b32",
+      "created": 1767804658,
+      "id": "bfc75a1b9ed04aa7b87c2c385f4b8ed8",
       "model": "devstral-2512",
       "object": "chat.completion",
       "usage": {
-        "completion_tokens": 13,
+        "completion_tokens": 16,
         "prompt_tokens": 6,
-        "total_tokens": 19
+        "total_tokens": 22
       }
     },
     "headers": {
@@ -76,7 +75,7 @@
         "application/json"
       ],
       "date": [
-        "Wed, 07 Jan 2026 15:29:25 GMT"
+        "Wed, 07 Jan 2026 16:50:58 GMT"
       ],
       "mistral-correlation-id": [
         "[REDACTED:mistral-correlation-id]"
@@ -98,16 +97,16 @@
         "nosniff"
       ],
       "x-envoy-upstream-service-time": [
-        "312"
+        "475"
       ],
       "x-kong-proxy-latency": [
-        "8"
+        "9"
       ],
       "x-kong-request-id": [
         "[REDACTED:x-kong-request-id]"
       ],
       "x-kong-upstream-latency": [
-        "312"
+        "476"
       ],
       "x-ratelimit-limit-req-60-second": [
         "600"
@@ -128,7 +127,7 @@
         "[REDACTED]"
       ],
       "x-ratelimit-tokens-query-cost": [
-        "19"
+        "22"
       ]
     },
     "status": 200

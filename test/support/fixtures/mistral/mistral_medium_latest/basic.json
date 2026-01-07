@@ -3,7 +3,7 @@
   "provider": "mistral",
   "request": {
     "body": {
-      "b64": "eyJtYXhfdG9rZW5zIjo1MCwibWVzc2FnZXMiOlt7ImNvbnRlbnQiOiJIZWxsbyB3b3JsZCEiLCJyb2xlIjoidXNlciJ9XSwibW9kZWwiOiJtaXN0cmFsLW1lZGl1bS1sYXRlc3QiLCJyYW5kb21fc2VlZCI6NDIsInN0cmVhbSI6ZmFsc2UsInRlbXBlcmF0dXJlIjowLjB9"
+      "b64": "eyJtYXhfdG9rZW5zIjo1MCwibWVzc2FnZXMiOlt7ImNvbnRlbnQiOiJIZWxsbyB3b3JsZCEiLCJyb2xlIjoidXNlciJ9XSwibW9kZWwiOiJtaXN0cmFsLW1lZGl1bS1sYXRlc3QiLCJzdHJlYW0iOmZhbHNlLCJ0ZW1wZXJhdHVyZSI6MC4wfQ=="
     },
     "canonical_json": {
       "max_tokens": 50,
@@ -14,7 +14,6 @@
         }
       ],
       "model": "mistral-medium-latest",
-      "random_seed": 42,
       "stream": false,
       "temperature": 0.0
     },
@@ -40,14 +39,14 @@
           "finish_reason": "length",
           "index": 0,
           "message": {
-            "content": "Hello, world! 🌍✨ How can I brighten your day today? Whether you need help with coding, ideas, or just a fun fact—ask away! 😊\n\n*(P.S. Your \"Hello, world",
+            "content": "Hello, world! 🌍✨ How can I brighten your day today? Whether you need help with coding, a fun fact, or just a chat—I'm here for it! 😊\n\n(And yes, your `",
             "role": "assistant",
             "tool_calls": null
           }
         }
       ],
-      "created": 1767799770,
-      "id": "c2cc0517aaa34c8c875ac250fdb29987",
+      "created": 1767804642,
+      "id": "0c216bd1e4c74e5286ba621189d806e6",
       "model": "mistral-medium-latest",
       "object": "chat.completion",
       "usage": {
@@ -76,7 +75,7 @@
         "application/json"
       ],
       "date": [
-        "Wed, 07 Jan 2026 15:29:31 GMT"
+        "Wed, 07 Jan 2026 16:50:42 GMT"
       ],
       "mistral-correlation-id": [
         "[REDACTED:mistral-correlation-id]"
@@ -98,16 +97,16 @@
         "nosniff"
       ],
       "x-envoy-upstream-service-time": [
-        "623"
+        "698"
       ],
       "x-kong-proxy-latency": [
-        "8"
+        "6"
       ],
       "x-kong-request-id": [
         "[REDACTED:x-kong-request-id]"
       ],
       "x-kong-upstream-latency": [
-        "623"
+        "699"
       ],
       "x-ratelimit-limit-req-60-second": [
         "360"

@@ -3,7 +3,7 @@
   "provider": "mistral",
   "request": {
     "body": {
-      "b64": "eyJtYXhfdG9rZW5zIjoxMDI0LCJtZXNzYWdlcyI6W3siY29udGVudCI6IlJlc3BvbmQgd2l0aCBhIHNpbmdsZSB3b3JkICdIaScuIiwicm9sZSI6InVzZXIifSx7ImNvbnRlbnQiOiJIaSIsInJvbGUiOiJhc3Npc3RhbnQifSx7ImNvbnRlbnQiOiJIaSBhZ2FpbiIsInJvbGUiOiJ1c2VyIn1dLCJtb2RlbCI6InBpeHRyYWwtbGFyZ2UtbGF0ZXN0IiwicmFuZG9tX3NlZWQiOjQyLCJzdHJlYW0iOmZhbHNlLCJ0ZW1wZXJhdHVyZSI6MC4wfQ=="
+      "b64": "eyJtYXhfdG9rZW5zIjoxMDI0LCJtZXNzYWdlcyI6W3siY29udGVudCI6IlJlc3BvbmQgd2l0aCBhIHNpbmdsZSB3b3JkICdIaScuIiwicm9sZSI6InVzZXIifSx7ImNvbnRlbnQiOiJIaSIsInJvbGUiOiJhc3Npc3RhbnQifSx7ImNvbnRlbnQiOiJIaSBhZ2FpbiIsInJvbGUiOiJ1c2VyIn1dLCJtb2RlbCI6InBpeHRyYWwtbGFyZ2UtbGF0ZXN0Iiwic3RyZWFtIjpmYWxzZSwidGVtcGVyYXR1cmUiOjAuMH0="
     },
     "canonical_json": {
       "max_tokens": 1024,
@@ -22,7 +22,6 @@
         }
       ],
       "model": "pixtral-large-latest",
-      "random_seed": 42,
       "stream": false,
       "temperature": 0.0
     },
@@ -48,20 +47,20 @@
           "finish_reason": "stop",
           "index": 0,
           "message": {
-            "content": "Hello! Let's chat. How are you doing? I'm functioning as intended, thank you. How about you? I can talk about it if you'd like. I can also tell jokes, share interesting facts, or explain concepts.  What would you like to do? Here are a few examples of things we could do:\n\n* Chat about a topic you're interested in\n* Play a game, like trivia, word association, or 20 questions\n* Learn something new together\n* I could also help explain something you find confusing\n\nWhat sounds like fun?",
+            "content": "Hello! How are you today? Let's chat if you'd like. I'm here to help or talk about something if you need. What would you like to do?\n\nI can do these things:\n- Answer questions based on the data I've been trained on (up until 2023)\n- Explain concepts in a simple and clear way\n- Provide suggestions and advice within reasonable and ethical boundaries\n- Engage in casual conversation\n- Help with language translations in multiple languages\n- Perform simple calculations and conversions\n- Provide word definitions and trivia\n- Generate text, such as summaries, translations, or creative writing pieces\n- And much more!\n\nWhat would you like to do?",
             "role": "assistant",
             "tool_calls": null
           }
         }
       ],
-      "created": 1767799789,
-      "id": "4c8363ea316540b2b4ab9179041262a9",
+      "created": 1767804656,
+      "id": "bce1ab223872499c87e732302fa7226a",
       "model": "pixtral-large-latest",
       "object": "chat.completion",
       "usage": {
-        "completion_tokens": 126,
+        "completion_tokens": 161,
         "prompt_tokens": 18,
-        "total_tokens": 144
+        "total_tokens": 179
       }
     },
     "headers": {
@@ -84,7 +83,7 @@
         "application/json"
       ],
       "date": [
-        "Wed, 07 Jan 2026 15:29:52 GMT"
+        "Wed, 07 Jan 2026 16:51:01 GMT"
       ],
       "mistral-correlation-id": [
         "[REDACTED:mistral-correlation-id]"
@@ -106,16 +105,16 @@
         "nosniff"
       ],
       "x-envoy-upstream-service-time": [
-        "3454"
+        "4702"
       ],
       "x-kong-proxy-latency": [
-        "9"
+        "6"
       ],
       "x-kong-request-id": [
         "[REDACTED:x-kong-request-id]"
       ],
       "x-kong-upstream-latency": [
-        "3455"
+        "4702"
       ],
       "x-ratelimit-limit-req-60-second": [
         "360"
@@ -136,7 +135,7 @@
         "[REDACTED]"
       ],
       "x-ratelimit-tokens-query-cost": [
-        "144"
+        "179"
       ]
     },
     "status": 200

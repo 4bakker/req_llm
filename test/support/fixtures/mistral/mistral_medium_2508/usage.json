@@ -3,7 +3,7 @@
   "provider": "mistral",
   "request": {
     "body": {
-      "b64": "eyJtYXhfdG9rZW5zIjoxMCwibWVzc2FnZXMiOlt7ImNvbnRlbnQiOiJIaSB0aGVyZSEiLCJyb2xlIjoidXNlciJ9XSwibW9kZWwiOiJtaXN0cmFsLW1lZGl1bS0yNTA4IiwicmFuZG9tX3NlZWQiOjQyLCJzdHJlYW0iOmZhbHNlLCJ0ZW1wZXJhdHVyZSI6MC4wfQ=="
+      "b64": "eyJtYXhfdG9rZW5zIjoxMCwibWVzc2FnZXMiOlt7ImNvbnRlbnQiOiJIaSB0aGVyZSEiLCJyb2xlIjoidXNlciJ9XSwibW9kZWwiOiJtaXN0cmFsLW1lZGl1bS0yNTA4Iiwic3RyZWFtIjpmYWxzZSwidGVtcGVyYXR1cmUiOjAuMH0="
     },
     "canonical_json": {
       "max_tokens": 10,
@@ -14,7 +14,6 @@
         }
       ],
       "model": "mistral-medium-2508",
-      "random_seed": 42,
       "stream": false,
       "temperature": 0.0
     },
@@ -40,14 +39,14 @@
           "finish_reason": "length",
           "index": 0,
           "message": {
-            "content": "Hello! 😊 How can I brighten",
+            "content": "Hello! 😊 How are you today?",
             "role": "assistant",
             "tool_calls": null
           }
         }
       ],
-      "created": 1767799769,
-      "id": "13148000448441ae9d94dc197d2a0372",
+      "created": 1767804645,
+      "id": "6ec7d248a5b34fb4b1fcf916ebe86f0a",
       "model": "mistral-medium-2508",
       "object": "chat.completion",
       "usage": {
@@ -76,7 +75,7 @@
         "application/json"
       ],
       "date": [
-        "Wed, 07 Jan 2026 15:29:29 GMT"
+        "Wed, 07 Jan 2026 16:50:45 GMT"
       ],
       "mistral-correlation-id": [
         "[REDACTED:mistral-correlation-id]"
@@ -98,16 +97,16 @@
         "nosniff"
       ],
       "x-envoy-upstream-service-time": [
-        "167"
+        "168"
       ],
       "x-kong-proxy-latency": [
-        "8"
+        "7"
       ],
       "x-kong-request-id": [
         "[REDACTED:x-kong-request-id]"
       ],
       "x-kong-upstream-latency": [
-        "168"
+        "169"
       ],
       "x-ratelimit-limit-req-60-second": [
         "360"

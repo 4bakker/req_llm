@@ -3,7 +3,7 @@
   "provider": "mistral",
   "request": {
     "body": {
-      "b64": "eyJtYXhfdG9rZW5zIjoyNjIxNCwibWVzc2FnZXMiOlt7ImNvbnRlbnQiOiJUZWxsIG1lIGEgam9rZSBhYm91dCBjYXRzIiwicm9sZSI6InVzZXIifV0sIm1vZGVsIjoibWlzdHJhbC1sYXJnZS0yNTEyIiwicmFuZG9tX3NlZWQiOjQyLCJzdHJlYW0iOmZhbHNlLCJ0ZW1wZXJhdHVyZSI6MC4wLCJ0b29scyI6W3siZnVuY3Rpb24iOnsiZGVzY3JpcHRpb24iOiJHZXQgY3VycmVudCB3ZWF0aGVyIGluZm9ybWF0aW9uIGZvciBhIGxvY2F0aW9uIiwibmFtZSI6ImdldF93ZWF0aGVyIiwicGFyYW1ldGVycyI6eyJhZGRpdGlvbmFsUHJvcGVydGllcyI6ZmFsc2UsInByb3BlcnRpZXMiOnsibG9jYXRpb24iOnsidHlwZSI6InN0cmluZyJ9fSwicmVxdWlyZWQiOlsibG9jYXRpb24iXSwidHlwZSI6Im9iamVjdCJ9fSwidHlwZSI6ImZ1bmN0aW9uIn1dfQ=="
+      "b64": "eyJtYXhfdG9rZW5zIjoyNjIxNCwibWVzc2FnZXMiOlt7ImNvbnRlbnQiOiJUZWxsIG1lIGEgam9rZSBhYm91dCBjYXRzIiwicm9sZSI6InVzZXIifV0sIm1vZGVsIjoibWlzdHJhbC1sYXJnZS0yNTEyIiwic3RyZWFtIjpmYWxzZSwidGVtcGVyYXR1cmUiOjAuMCwidG9vbHMiOlt7ImZ1bmN0aW9uIjp7ImRlc2NyaXB0aW9uIjoiR2V0IGN1cnJlbnQgd2VhdGhlciBpbmZvcm1hdGlvbiBmb3IgYSBsb2NhdGlvbiIsIm5hbWUiOiJnZXRfd2VhdGhlciIsInBhcmFtZXRlcnMiOnsiYWRkaXRpb25hbFByb3BlcnRpZXMiOmZhbHNlLCJwcm9wZXJ0aWVzIjp7ImxvY2F0aW9uIjp7InR5cGUiOiJzdHJpbmcifX0sInJlcXVpcmVkIjpbImxvY2F0aW9uIl0sInR5cGUiOiJvYmplY3QifX0sInR5cGUiOiJmdW5jdGlvbiJ9XX0="
     },
     "canonical_json": {
       "max_tokens": 26214,
@@ -14,7 +14,6 @@
         }
       ],
       "model": "mistral-large-2512",
-      "random_seed": 42,
       "stream": false,
       "temperature": 0.0,
       "tools": [
@@ -61,20 +60,20 @@
           "finish_reason": "stop",
           "index": 0,
           "message": {
-            "content": "Sure! Here's one for you:\n\nWhy don’t cats play poker in the wild?\n\n*Because there are too many cheetahs!* 😸",
+            "content": "Sure! Here's one for you:\n\nWhy don’t cats play poker in the wild?\n\nBecause there are too many *cheetahs*! 😸",
             "role": "assistant",
             "tool_calls": null
           }
         }
       ],
-      "created": 1767799775,
-      "id": "5938d7a222f94686af38f818306576bf",
+      "created": 1767804644,
+      "id": "a73ee28efb9548d681ecf624768b84c9",
       "model": "mistral-large-2512",
       "object": "chat.completion",
       "usage": {
-        "completion_tokens": 33,
+        "completion_tokens": 34,
         "prompt_tokens": 76,
-        "total_tokens": 109
+        "total_tokens": 110
       }
     },
     "headers": {
@@ -97,7 +96,7 @@
         "application/json"
       ],
       "date": [
-        "Wed, 07 Jan 2026 15:29:36 GMT"
+        "Wed, 07 Jan 2026 16:50:45 GMT"
       ],
       "mistral-correlation-id": [
         "[REDACTED:mistral-correlation-id]"
@@ -119,16 +118,16 @@
         "nosniff"
       ],
       "x-envoy-upstream-service-time": [
-        "1074"
+        "885"
       ],
       "x-kong-proxy-latency": [
-        "19"
+        "7"
       ],
       "x-kong-request-id": [
         "[REDACTED:x-kong-request-id]"
       ],
       "x-kong-upstream-latency": [
-        "1074"
+        "887"
       ],
       "x-ratelimit-limit-req-60-second": [
         "360"
@@ -149,7 +148,7 @@
         "[REDACTED]"
       ],
       "x-ratelimit-tokens-query-cost": [
-        "109"
+        "110"
       ]
     },
     "status": 200
