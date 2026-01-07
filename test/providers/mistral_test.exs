@@ -516,25 +516,6 @@ defmodule ReqLLM.Providers.MistralTest do
       assert decoded["metadata"] == %{"user_id" => "abc123", "session" => "xyz789"}
     end
 
-    test "encode_body includes n from core options" do
-      {:ok, model} = ReqLLM.model("mistral:mistral-large-latest")
-      context = context_fixture()
-
-      mock_request = %Req.Request{
-        options: [
-          context: context,
-          model: model.model,
-          stream: false,
-          n: 3
-        ]
-      }
-
-      updated_request = Mistral.encode_body(mock_request)
-      decoded = Jason.decode!(updated_request.body)
-
-      assert decoded["n"] == 3
-    end
-
     test "encode_body removes seed key (uses random_seed instead)" do
       {:ok, model} = ReqLLM.model("mistral:mistral-large-latest")
       context = context_fixture()
@@ -565,7 +546,6 @@ defmodule ReqLLM.Providers.MistralTest do
           context: context,
           model: model.model,
           stream: false,
-          n: 2,
           provider_options: [
             random_seed: 42,
             safe_prompt: true,
@@ -586,7 +566,6 @@ defmodule ReqLLM.Providers.MistralTest do
       assert decoded["parallel_tool_calls"] == false
       assert decoded["prompt_mode"] == "reasoning"
       assert decoded["metadata"] == %{"key" => "value"}
-      assert decoded["n"] == 2
     end
   end
 

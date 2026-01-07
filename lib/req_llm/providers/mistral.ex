@@ -18,8 +18,6 @@ defmodule ReqLLM.Providers.Mistral do
   - `:prompt_mode` - Reasoning mode for reasoning models (`:reasoning`)
   - `:metadata` - Arbitrary key-value metadata for the request
 
-  The core `:n` option for multiple completions is also supported.
-
   ## Configuration
 
       # Add to .env file (automatically loaded)
@@ -113,7 +111,6 @@ defmodule ReqLLM.Providers.Mistral do
       |> maybe_put(:parallel_tool_calls, provider_opts[:parallel_tool_calls])
       |> maybe_put(:prompt_mode, provider_opts[:prompt_mode])
       |> maybe_put(:metadata, provider_opts[:metadata])
-      |> maybe_put(:n, request.options[:n])
       |> Map.delete("seed")
       |> AdapterHelpers.add_response_format(provider_opts)
 

@@ -61,14 +61,6 @@ Passed via `:provider_options` keyword:
 - **Purpose**: Arbitrary key-value metadata for the request
 - **Example**: `provider_options: [metadata: %{"user_id" => "abc123"}]`
 
-## Core Options
-
-The following core ReqLLM options are also supported:
-
-- `n` - Number of completions to generate (default: 1)
-- `frequency_penalty` - Penalize repeated tokens based on frequency
-- `presence_penalty` - Penalize repeated tokens based on presence
-
 ## Seed Translation
 
 ReqLLM automatically translates the standard `seed` option to Mistral's `random_seed`:
