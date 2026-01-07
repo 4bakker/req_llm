@@ -102,11 +102,10 @@ defmodule ReqLLM.Streaming.Fixtures do
 
     defp sanitize_response_headers(headers) when is_map(headers) do
       headers
-      |> Enum.map(fn {k, v} ->
+      |> Map.new(fn {k, v} ->
         key = String.downcase(to_string(k))
         {k, sanitize_response_header_value(key, v)}
       end)
-      |> Map.new()
     end
 
     defp sanitize_response_headers(headers) when is_list(headers) do
@@ -160,8 +159,6 @@ defmodule ReqLLM.Streaming.Fixtures do
           value
       end
     end
-
-    defp sanitize_response_header_value(_key, value), do: value
   end
 
   @doc """

@@ -3,6 +3,14 @@
     "id": "mistral",
     "name": "Mistral AI"
   },
+  "exclude": [
+    "mistral-embed",
+    "open-mistral-7b",
+    "mistral-nemo",
+    "magistral-small",
+    "magistral-medium-latest",
+    "devstral-medium-2507"
+  ],
   "models": [
     {
       "id": "mistral-small-latest",

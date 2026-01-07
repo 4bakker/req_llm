@@ -442,11 +442,10 @@ defmodule ReqLLM.Step.Fixture.Backend do
 
   defp sanitize_response_headers(headers) when is_map(headers) do
     headers
-    |> Enum.map(fn {k, v} ->
+    |> Map.new(fn {k, v} ->
       key = String.downcase(to_string(k))
       {k, sanitize_response_header_value(key, v)}
     end)
-    |> Map.new()
   end
 
   defp sanitize_response_headers(headers), do: headers
