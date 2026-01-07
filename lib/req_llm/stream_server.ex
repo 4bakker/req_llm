@@ -131,7 +131,8 @@ defmodule ReqLLM.StreamServer do
       high_watermark: Keyword.get(opts, :high_watermark, 500)
     }
 
-    GenServer.start_link(__MODULE__, state, opts)
+    genserver_opts = Keyword.take(opts, [:name, :timeout, :debug, :spawn_opt, :hibernate_after])
+    GenServer.start_link(__MODULE__, state, genserver_opts)
   end
 
   @doc """

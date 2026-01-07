@@ -43,10 +43,12 @@ defmodule ReqLLM.Test.StreamServerHelpers do
 
     def decode_stream_event(_event, _model), do: []
 
-    def prepare_request(_op, _model, _data, _opts), do: {:error, :not_implemented}
-    def attach(_req, _model, _opts), do: {:error, :not_implemented}
-    def encode_body(_req), do: {:error, :not_implemented}
-    def decode_response(_resp), do: {:error, :not_implemented}
+    def prepare_request(_op, _model, _data, _opts),
+      do: {:error, %RuntimeError{message: "not implemented"}}
+
+    def attach(req, _model, _opts), do: req
+    def encode_body(req), do: req
+    def decode_response({req, resp}), do: {req, resp}
   end
 
   @doc """

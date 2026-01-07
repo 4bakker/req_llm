@@ -113,8 +113,13 @@ defmodule ReqLLM.Test.Helpers do
     assert_chunk_types(chunks)
     assert_content_presence(chunks)
 
-    materialized = Response.join_stream(response)
-    assert_normalized_response(materialized)
+    case Response.join_stream(response) do
+      {:ok, materialized} ->
+        assert_normalized_response(materialized)
+
+      {:error, error} ->
+        flunk("Stream materialization failed: #{inspect(error)}")
+    end
 
     response
   end

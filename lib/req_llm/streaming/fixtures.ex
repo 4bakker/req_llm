@@ -124,8 +124,22 @@ defmodule ReqLLM.Streaming.Fixtures do
 
     defp sanitize_response_headers(headers), do: headers
 
+    @sensitive_headers [
+      "authorization",
+      "x-api-key",
+      "anthropic-api-key",
+      "openai-api-key",
+      "x-auth-token",
+      "bearer",
+      "api-key",
+      "access-token"
+    ]
+
     defp sanitize_response_header_value(key, value) when is_binary(key) do
       cond do
+        key in @sensitive_headers ->
+          "[REDACTED:#{key}]"
+
         key == "set-cookie" ->
           if is_list(value) do
             Enum.map(value, fn _ -> "[REDACTED:set-cookie]" end)
