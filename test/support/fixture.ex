@@ -275,7 +275,7 @@ defmodule ReqLLM.Step.Fixture.Backend do
 
     response_meta = %{
       status: resp.status,
-      headers: resp.headers |> Enum.to_list()
+      headers: sanitize_response_headers(resp.headers)
     }
 
     Logger.debug("Fixture request: method=#{request_meta.method}, url=#{request_meta.url}")
@@ -355,7 +355,7 @@ defmodule ReqLLM.Step.Fixture.Backend do
 
     response_meta = %{
       status: http_context.status || 200,
-      headers: headers
+      headers: sanitize_response_headers(headers)
     }
 
     if chunks in [nil, []] do
@@ -424,6 +424,71 @@ defmodule ReqLLM.Step.Fixture.Backend do
         _value -> Map.put(acc, key, ["[REDACTED:#{key}]"])
       end
     end)
+  end
+
+  defp sanitize_response_headers(headers) when is_list(headers) do
+    headers
+    |> Enum.map(fn
+      {key, value} when is_binary(key) ->
+        {key, sanitize_response_header_value(String.downcase(key), value)}
+
+      {key, value} ->
+        {to_string(key), sanitize_response_header_value(String.downcase(to_string(key)), value)}
+
+      other ->
+        other
+    end)
+  end
+
+  defp sanitize_response_headers(headers) when is_map(headers) do
+    headers
+    |> Enum.map(fn {k, v} ->
+      key = String.downcase(to_string(k))
+      {k, sanitize_response_header_value(key, v)}
+    end)
+    |> Map.new()
+  end
+
+  defp sanitize_response_headers(headers), do: headers
+
+  defp sanitize_response_header_value(key, value) when is_binary(key) do
+    cond do
+      # Cookies - completely redact
+      key == "set-cookie" ->
+        if is_list(value) do
+          Enum.map(value, fn _ -> "[REDACTED:set-cookie]" end)
+        else
+          "[REDACTED:set-cookie]"
+        end
+
+      # Organization/project identifiers
+      key in ["openai-organization", "openai-project"] ->
+        "[REDACTED:#{key}]"
+
+      # Rate limit headers - redact values but keep structure
+      String.starts_with?(key, "x-ratelimit-remaining-") ->
+        if is_list(value) do
+          Enum.map(value, fn _ -> "[REDACTED]" end)
+        else
+          "[REDACTED]"
+        end
+
+      # Correlation/request IDs
+      key in [
+        "mistral-correlation-id",
+        "x-kong-request-id",
+        "x-request-id",
+        "cf-ray"
+      ] ->
+        if is_list(value) do
+          Enum.map(value, fn _ -> "[REDACTED:#{key}]" end)
+        else
+          "[REDACTED:#{key}]"
+        end
+
+      true ->
+        value
+    end
   end
 
   # Body → JSON-friendly encoding

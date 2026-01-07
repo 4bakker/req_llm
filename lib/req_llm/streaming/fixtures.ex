@@ -46,7 +46,7 @@ defmodule ReqLLM.Streaming.Fixtures do
     """
     @spec update_response(t(), integer(), map()) :: t()
     def update_response(%__MODULE__{} = context, status, headers) do
-      %{context | status: status, resp_headers: sanitize_headers(headers)}
+      %{context | status: status, resp_headers: sanitize_response_headers(headers)}
     end
 
     @doc """
@@ -99,6 +99,69 @@ defmodule ReqLLM.Streaming.Fixtures do
     end
 
     defp sanitize_headers(headers), do: headers
+
+    defp sanitize_response_headers(headers) when is_map(headers) do
+      headers
+      |> Enum.map(fn {k, v} ->
+        key = String.downcase(to_string(k))
+        {k, sanitize_response_header_value(key, v)}
+      end)
+      |> Map.new()
+    end
+
+    defp sanitize_response_headers(headers) when is_list(headers) do
+      headers
+      |> Enum.map(fn
+        {key, value} when is_binary(key) ->
+          {key, sanitize_response_header_value(String.downcase(key), value)}
+
+        {key, value} ->
+          {to_string(key), sanitize_response_header_value(String.downcase(to_string(key)), value)}
+
+        other ->
+          other
+      end)
+    end
+
+    defp sanitize_response_headers(headers), do: headers
+
+    defp sanitize_response_header_value(key, value) when is_binary(key) do
+      cond do
+        key == "set-cookie" ->
+          if is_list(value) do
+            Enum.map(value, fn _ -> "[REDACTED:set-cookie]" end)
+          else
+            "[REDACTED:set-cookie]"
+          end
+
+        key in ["openai-organization", "openai-project"] ->
+          "[REDACTED:#{key}]"
+
+        String.starts_with?(key, "x-ratelimit-remaining-") ->
+          if is_list(value) do
+            Enum.map(value, fn _ -> "[REDACTED]" end)
+          else
+            "[REDACTED]"
+          end
+
+        key in [
+          "mistral-correlation-id",
+          "x-kong-request-id",
+          "x-request-id",
+          "cf-ray"
+        ] ->
+          if is_list(value) do
+            Enum.map(value, fn _ -> "[REDACTED:#{key}]" end)
+          else
+            "[REDACTED:#{key}]"
+          end
+
+        true ->
+          value
+      end
+    end
+
+    defp sanitize_response_header_value(_key, value), do: value
   end
 
   @doc """
