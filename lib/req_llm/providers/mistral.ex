@@ -28,6 +28,23 @@ defmodule ReqLLM.Providers.Mistral do
 
   use ReqLLM.Provider.Defaults
 
+  import ReqLLM.Provider.Utils, only: [maybe_put: 3]
+
+  @provider_schema [
+    random_seed: [
+      type: :integer,
+      doc: "Deterministic sampling for reproducible outputs"
+    ],
+    safe_prompt: [
+      type: :boolean,
+      doc: "Inject Mistral's safety prompt before all conversations"
+    ],
+    prediction: [
+      type: :map,
+      doc: "Enable speculative decoding with expected content"
+    ]
+  ]
+
   @impl ReqLLM.Provider
   def encode_body(request) do
     request = ReqLLM.Provider.Defaults.default_encode_body(request)
@@ -75,9 +92,6 @@ defmodule ReqLLM.Providers.Mistral do
       body
     end
   end
-
-  defp maybe_put(body, _key, nil), do: body
-  defp maybe_put(body, key, value), do: Map.put(body, key, value)
 
   @impl ReqLLM.Provider
   def translate_options(_operation, _model, opts) do
@@ -152,15 +166,34 @@ defmodule ReqLLM.Providers.Mistral do
   def decode_response({req, resp}) do
     case resp.status do
       200 ->
-        # Pre-process the response to normalize Mistral's tool_calls format
         body = ensure_parsed_body(resp.body)
-        normalized_body = normalize_mistral_tool_calls(body)
+
+        normalized_body =
+          body
+          |> normalize_mistral_tool_calls()
+          |> normalize_mistral_finish_reason()
+
         ReqLLM.Provider.Defaults.default_decode_response({req, %{resp | body: normalized_body}})
 
       _ ->
         ReqLLM.Provider.Defaults.default_decode_response({req, resp})
     end
   end
+
+  defp normalize_mistral_finish_reason(%{"choices" => choices} = body) when is_list(choices) do
+    normalized_choices =
+      Enum.map(choices, fn
+        %{"finish_reason" => "model_length"} = choice ->
+          %{choice | "finish_reason" => "length"}
+
+        choice ->
+          choice
+      end)
+
+    %{body | "choices" => normalized_choices}
+  end
+
+  defp normalize_mistral_finish_reason(body), do: body
 
   # Mistral's tool_calls may differ from OpenAI in two ways:
   # 1. They don't include "type": "function" - we add it

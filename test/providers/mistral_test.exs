@@ -11,14 +11,6 @@ defmodule ReqLLM.Providers.MistralTest do
   alias ReqLLM.Context
   alias ReqLLM.Providers.Mistral
 
-  # Helper to create a Mistral model struct directly (LLMDB may not have Mistral models yet)
-  defp mistral_model(model_id \\ "mistral-large-latest") do
-    %LLMDB.Model{
-      id: model_id,
-      provider: :mistral
-    }
-  end
-
   describe "provider contract" do
     test "provider identity and configuration" do
       assert Mistral.provider_id() == :mistral
@@ -46,15 +38,37 @@ defmodule ReqLLM.Providers.MistralTest do
       missing = core_without_meta -- full_keys
       assert missing == [], "Missing core generation keys in extended schema: #{inspect(missing)}"
     end
+
+    test "provider_extended_generation_schema includes both base and provider options" do
+      extended_schema = Mistral.provider_extended_generation_schema()
+      extended_keys = extended_schema.schema |> Keyword.keys()
+
+      # Should include all core generation keys
+      core_keys = ReqLLM.Provider.Options.all_generation_keys()
+      core_without_meta = Enum.reject(core_keys, &(&1 == :provider_options))
+
+      for core_key <- core_without_meta do
+        assert core_key in extended_keys,
+               "Extended schema missing core key: #{core_key}"
+      end
+
+      # Should include provider-specific keys
+      provider_keys = Mistral.provider_schema().schema |> Keyword.keys()
+
+      for provider_key <- provider_keys do
+        assert provider_key in extended_keys,
+               "Extended schema missing provider key: #{provider_key}"
+      end
+    end
   end
 
   describe "request preparation & pipeline wiring" do
     test "prepare_request creates configured request" do
-      model = mistral_model()
-      prompt = "Hello world"
+      {:ok, model} = ReqLLM.model("mistral:mistral-large-latest")
+      context = context_fixture()
       opts = [temperature: 0.7, max_tokens: 100]
 
-      {:ok, request} = Mistral.prepare_request(:chat, model, prompt, opts)
+      {:ok, request} = Mistral.prepare_request(:chat, model, context, opts)
 
       assert %Req.Request{} = request
       assert request.url.path == "/chat/completions"
@@ -62,7 +76,7 @@ defmodule ReqLLM.Providers.MistralTest do
     end
 
     test "attach configures authentication and pipeline" do
-      model = mistral_model()
+      {:ok, model} = ReqLLM.model("mistral:mistral-large-latest")
       opts = [temperature: 0.5, max_tokens: 50]
 
       request = Req.new() |> Mistral.attach(model, opts)
@@ -82,15 +96,15 @@ defmodule ReqLLM.Providers.MistralTest do
     end
 
     test "error handling for invalid configurations" do
-      model = mistral_model()
-      prompt = "Hello world"
+      {:ok, model} = ReqLLM.model("mistral:mistral-large-latest")
+      context = context_fixture()
 
       # Unsupported operation
-      {:error, error} = Mistral.prepare_request(:unsupported, model, prompt, [])
+      {:error, error} = Mistral.prepare_request(:unsupported, model, context, [])
       assert %ReqLLM.Error.Invalid.Parameter{} = error
 
       # Provider mismatch
-      wrong_model = %LLMDB.Model{id: "gpt-4", provider: :openai}
+      {:ok, wrong_model} = ReqLLM.model("xai:grok-3")
 
       assert_raise ReqLLM.Error.Invalid.Provider, fn ->
         Req.new() |> Mistral.attach(wrong_model, [])
@@ -100,13 +114,13 @@ defmodule ReqLLM.Providers.MistralTest do
 
   describe "body encoding & context translation" do
     test "encode_body without tools" do
-      model = mistral_model()
+      {:ok, model} = ReqLLM.model("mistral:mistral-large-latest")
       context = context_fixture()
 
       mock_request = %Req.Request{
         options: [
           context: context,
-          model: model.id,
+          model: model.model,
           stream: false
         ]
       }
@@ -128,7 +142,7 @@ defmodule ReqLLM.Providers.MistralTest do
     end
 
     test "encode_body with tools" do
-      model = mistral_model()
+      {:ok, model} = ReqLLM.model("mistral:mistral-large-latest")
       context = context_fixture()
 
       tool =
@@ -144,7 +158,7 @@ defmodule ReqLLM.Providers.MistralTest do
       mock_request = %Req.Request{
         options: [
           context: context,
-          model: model.id,
+          model: model.model,
           stream: false,
           tools: [tool]
         ]
@@ -161,7 +175,7 @@ defmodule ReqLLM.Providers.MistralTest do
     end
 
     test "encode_body handles standard OpenAI options" do
-      model = mistral_model()
+      {:ok, model} = ReqLLM.model("mistral:mistral-large-latest")
       context = context_fixture()
 
       test_cases = [
@@ -180,7 +194,7 @@ defmodule ReqLLM.Providers.MistralTest do
       ]
 
       for {options, assertion} <- test_cases do
-        full_options = [context: context, model: model.id, stream: false] ++ options
+        full_options = [context: context, model: model.model, stream: false] ++ options
         mock_request = %Req.Request{options: full_options}
         updated_request = Mistral.encode_body(mock_request)
         decoded = Jason.decode!(updated_request.body)
@@ -191,7 +205,7 @@ defmodule ReqLLM.Providers.MistralTest do
 
   describe "response decoding & normalization" do
     test "decode_response handles non-streaming responses" do
-      model = mistral_model()
+      {:ok, model} = ReqLLM.model("mistral:mistral-large-latest")
       mock_json_response = openai_format_json_fixture(model: "mistral-large-latest")
 
       mock_resp = %Req.Response{
@@ -202,7 +216,8 @@ defmodule ReqLLM.Providers.MistralTest do
       context = context_fixture()
 
       mock_req = %Req.Request{
-        options: [context: context, stream: false, id: "mistral:mistral-large-latest"]
+        options: [context: context, stream: false, id: "mistral:mistral-large-latest"],
+        private: %{req_llm_model: model}
       }
 
       {req, resp} = Mistral.decode_response({mock_req, mock_resp})
@@ -212,7 +227,7 @@ defmodule ReqLLM.Providers.MistralTest do
 
       response = resp.body
       assert is_binary(response.id)
-      assert response.model == model.id
+      assert response.model == model.model
       assert response.stream? == false
 
       # Verify message normalization
@@ -233,6 +248,8 @@ defmodule ReqLLM.Providers.MistralTest do
     end
 
     test "decode_response handles API errors with non-200 status" do
+      {:ok, model} = ReqLLM.model("mistral:mistral-large-latest")
+
       error_body = %{
         "error" => %{
           "message" => "Invalid API key",
@@ -249,7 +266,8 @@ defmodule ReqLLM.Providers.MistralTest do
       context = context_fixture()
 
       mock_req = %Req.Request{
-        options: [context: context, id: "mistral-large-latest"]
+        options: [context: context, id: "mistral:mistral-large-latest"],
+        private: %{req_llm_model: model}
       }
 
       {req, error} = Mistral.decode_response({mock_req, mock_resp})
@@ -264,7 +282,7 @@ defmodule ReqLLM.Providers.MistralTest do
 
   describe "usage extraction" do
     test "extract_usage with valid usage data" do
-      model = mistral_model()
+      {:ok, model} = ReqLLM.model("mistral:mistral-large-latest")
 
       body_with_usage = %{
         "usage" => %{
@@ -281,14 +299,14 @@ defmodule ReqLLM.Providers.MistralTest do
     end
 
     test "extract_usage with missing usage data" do
-      model = mistral_model()
+      {:ok, model} = ReqLLM.model("mistral:mistral-large-latest")
       body_without_usage = %{"choices" => []}
 
       {:error, :no_usage_found} = Mistral.extract_usage(body_without_usage, model)
     end
 
     test "extract_usage with invalid body type" do
-      model = mistral_model()
+      {:ok, model} = ReqLLM.model("mistral:mistral-large-latest")
 
       {:error, :invalid_body} = Mistral.extract_usage("invalid", model)
       {:error, :invalid_body} = Mistral.extract_usage(nil, model)
@@ -311,6 +329,216 @@ defmodule ReqLLM.Providers.MistralTest do
                    fn ->
                      Context.validate!(invalid_context)
                    end
+    end
+  end
+
+  describe "option translation" do
+    test "provider implements translate_options/3" do
+      assert function_exported?(Mistral, :translate_options, 3)
+    end
+
+    test "translate_options converts seed to random_seed in provider_options" do
+      {:ok, model} = ReqLLM.model("mistral:mistral-large-latest")
+
+      opts = [temperature: 0.7, seed: 42]
+      {translated_opts, warnings} = Mistral.translate_options(:chat, model, opts)
+
+      refute Keyword.has_key?(translated_opts, :seed)
+      provider_opts = Keyword.get(translated_opts, :provider_options, [])
+      assert Keyword.get(provider_opts, :random_seed) == 42
+      assert warnings == []
+    end
+
+    test "translate_options preserves other options unchanged" do
+      {:ok, model} = ReqLLM.model("mistral:mistral-large-latest")
+
+      opts = [temperature: 0.7, max_tokens: 100, top_p: 0.9]
+      {translated_opts, warnings} = Mistral.translate_options(:chat, model, opts)
+
+      assert Keyword.get(translated_opts, :temperature) == 0.7
+      assert Keyword.get(translated_opts, :max_tokens) == 100
+      assert Keyword.get(translated_opts, :top_p) == 0.9
+      assert warnings == []
+    end
+
+    test "translate_options without seed passes through unchanged" do
+      {:ok, model} = ReqLLM.model("mistral:mistral-large-latest")
+
+      opts = [temperature: 0.5]
+      {translated_opts, warnings} = Mistral.translate_options(:chat, model, opts)
+
+      assert Keyword.get(translated_opts, :temperature) == 0.5
+      refute Keyword.has_key?(translated_opts, :provider_options)
+      assert warnings == []
+    end
+  end
+
+  describe "Mistral-specific features" do
+    test "encode_body includes random_seed from provider_options" do
+      {:ok, model} = ReqLLM.model("mistral:mistral-large-latest")
+      context = context_fixture()
+
+      mock_request = %Req.Request{
+        options: [
+          context: context,
+          model: model.model,
+          stream: false,
+          provider_options: [random_seed: 12_345]
+        ]
+      }
+
+      updated_request = Mistral.encode_body(mock_request)
+      decoded = Jason.decode!(updated_request.body)
+
+      assert decoded["random_seed"] == 12_345
+    end
+
+    test "encode_body includes safe_prompt from provider_options" do
+      {:ok, model} = ReqLLM.model("mistral:mistral-large-latest")
+      context = context_fixture()
+
+      mock_request = %Req.Request{
+        options: [
+          context: context,
+          model: model.model,
+          stream: false,
+          provider_options: [safe_prompt: true]
+        ]
+      }
+
+      updated_request = Mistral.encode_body(mock_request)
+      decoded = Jason.decode!(updated_request.body)
+
+      assert decoded["safe_prompt"] == true
+    end
+
+    test "encode_body includes prediction from provider_options" do
+      {:ok, model} = ReqLLM.model("mistral:mistral-large-latest")
+      context = context_fixture()
+
+      prediction = %{type: "content", content: "Expected output..."}
+
+      mock_request = %Req.Request{
+        options: [
+          context: context,
+          model: model.model,
+          stream: false,
+          provider_options: [prediction: prediction]
+        ]
+      }
+
+      updated_request = Mistral.encode_body(mock_request)
+      decoded = Jason.decode!(updated_request.body)
+
+      assert decoded["prediction"] == %{"type" => "content", "content" => "Expected output..."}
+    end
+
+    test "encode_body includes all Mistral-specific options together" do
+      {:ok, model} = ReqLLM.model("mistral:mistral-large-latest")
+      context = context_fixture()
+
+      mock_request = %Req.Request{
+        options: [
+          context: context,
+          model: model.model,
+          stream: false,
+          provider_options: [
+            random_seed: 42,
+            safe_prompt: true,
+            prediction: %{type: "content", content: "test"}
+          ]
+        ]
+      }
+
+      updated_request = Mistral.encode_body(mock_request)
+      decoded = Jason.decode!(updated_request.body)
+
+      assert decoded["random_seed"] == 42
+      assert decoded["safe_prompt"] == true
+      assert decoded["prediction"] == %{"type" => "content", "content" => "test"}
+    end
+  end
+
+  describe "Mistral finish reason normalization" do
+    test "decode_response normalizes model_length to length" do
+      {:ok, model} = ReqLLM.model("mistral:mistral-large-latest")
+
+      mock_json_response = %{
+        "id" => "chatcmpl-test123",
+        "object" => "chat.completion",
+        "created" => 1_234_567_890,
+        "model" => "mistral-large-latest",
+        "choices" => [
+          %{
+            "index" => 0,
+            "message" => %{
+              "role" => "assistant",
+              "content" => "This response was truncated..."
+            },
+            "finish_reason" => "model_length"
+          }
+        ],
+        "usage" => %{
+          "prompt_tokens" => 10,
+          "completion_tokens" => 8,
+          "total_tokens" => 18
+        }
+      }
+
+      mock_resp = %Req.Response{
+        status: 200,
+        body: mock_json_response
+      }
+
+      context = context_fixture()
+
+      mock_req = %Req.Request{
+        options: [context: context, stream: false],
+        private: %{req_llm_model: model}
+      }
+
+      {_req, resp} = Mistral.decode_response({mock_req, mock_resp})
+
+      assert %ReqLLM.Response{} = resp.body
+      assert resp.body.finish_reason == :length
+    end
+
+    test "decode_response preserves standard finish reasons" do
+      {:ok, model} = ReqLLM.model("mistral:mistral-large-latest")
+
+      for {api_reason, expected_reason} <- [
+            {"stop", :stop},
+            {"length", :length},
+            {"tool_calls", :tool_calls}
+          ] do
+        mock_json_response = %{
+          "id" => "chatcmpl-test123",
+          "object" => "chat.completion",
+          "created" => 1_234_567_890,
+          "model" => "mistral-large-latest",
+          "choices" => [
+            %{
+              "index" => 0,
+              "message" => %{"role" => "assistant", "content" => "Response"},
+              "finish_reason" => api_reason
+            }
+          ],
+          "usage" => %{"prompt_tokens" => 10, "completion_tokens" => 5, "total_tokens" => 15}
+        }
+
+        mock_resp = %Req.Response{status: 200, body: mock_json_response}
+        context = context_fixture()
+
+        mock_req = %Req.Request{
+          options: [context: context, stream: false],
+          private: %{req_llm_model: model}
+        }
+
+        {_req, resp} = Mistral.decode_response({mock_req, mock_resp})
+
+        assert resp.body.finish_reason == expected_reason,
+               "Expected #{inspect(expected_reason)} for API reason #{inspect(api_reason)}, got #{inspect(resp.body.finish_reason)}"
+      end
     end
   end
 end
