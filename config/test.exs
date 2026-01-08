@@ -167,6 +167,45 @@ config :llm_db,
           name: "Gemini Embedding 001",
           family: "embedding",
           capabilities: %{embeddings: true}
+        },
+        "gemini-3-flash" => %{
+          name: "Gemini 3 Flash",
+          family: "gemini-3",
+          capabilities: %{
+            chat: true,
+            tools: %{enabled: true, streaming: true},
+            reasoning: %{enabled: true}
+          },
+          limits: %{context: 1_048_576, output: 65_535}
+        },
+        "gemini-3-flash-preview" => %{
+          name: "Gemini 3 Flash Preview",
+          family: "gemini-3",
+          capabilities: %{
+            chat: true,
+            tools: %{enabled: true, streaming: true},
+            reasoning: %{enabled: true}
+          },
+          limits: %{context: 1_048_576, output: 65_535}
+        },
+        "gemini-3-pro" => %{
+          name: "Gemini 3 Pro",
+          family: "gemini-3",
+          capabilities: %{
+            chat: true,
+            tools: %{enabled: true, streaming: true},
+            reasoning: %{enabled: true}
+          },
+          limits: %{context: 1_048_576, output: 65_535}
+        },
+        "gemini-3-pro-image-preview" => %{
+          name: "Gemini 3 Pro Image Preview",
+          family: "gemini-3",
+          capabilities: %{
+            chat: true,
+            image_generation: true
+          },
+          limits: %{context: 1_048_576, output: 65_535}
         }
       }
     ],
