@@ -88,33 +88,35 @@ defmodule Mix.Tasks.ReqLlm.FixtureSanitize do
   end
 
   defp sanitize_fixture_file(path, dry_run?, verbose?) do
-    content = File.read!(path)
-    json = Jason.decode!(content)
+    try do
+      content = File.read!(path)
+      json = Jason.decode!(content)
 
-    sanitized = sanitize_fixture(json)
+      sanitized = sanitize_fixture(json)
 
-    if sanitized == json do
-      if verbose? do
-        Mix.shell().info("  Unchanged: #{Path.relative_to_cwd(path)}")
+      if sanitized != json do
+        if verbose? do
+          Mix.shell().info("  Modified: #{Path.relative_to_cwd(path)}")
+        end
+
+        unless dry_run? do
+          sanitized_json = Jason.encode!(sanitized, pretty: true)
+          File.write!(path, sanitized_json)
+        end
+
+        true
+      else
+        if verbose? do
+          Mix.shell().info("  Unchanged: #{Path.relative_to_cwd(path)}")
+        end
+
+        false
       end
-
-      false
-    else
-      if verbose? do
-        Mix.shell().info("  Modified: #{Path.relative_to_cwd(path)}")
-      end
-
-      if !dry_run? do
-        sanitized_json = Jason.encode!(sanitized, pretty: true)
-        File.write!(path, sanitized_json)
-      end
-
-      true
+    rescue
+      e ->
+        Mix.shell().error("Error processing #{Path.relative_to_cwd(path)}: #{inspect(e)}")
+        false
     end
-  rescue
-    e ->
-      Mix.shell().error("Error processing #{Path.relative_to_cwd(path)}: #{inspect(e)}")
-      false
   end
 
   defp sanitize_fixture(%{"response" => response} = fixture) when is_map(response) do
